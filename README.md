@@ -68,7 +68,10 @@ cp .env.example .env
 # 5. Test your connection
 python exercises/00_setup/01_test_connection.py
 
-# 6. Start the documentation site
+# 6. Launch the interactive workshop TUI
+python workshop.py
+
+# Or start the documentation site
 mkdocs serve
 # Open http://127.0.0.1:8000
 ```
