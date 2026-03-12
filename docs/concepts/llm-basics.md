@@ -120,14 +120,10 @@ This is the foundation of **agent identity** — when we build multi-agent syste
 
 ## Hands-On Exercises
 
-Now try it yourself:
+Now try it yourself — head to the [LLM Basics exercises](../exercises/01_llm_basics.md):
 
-- **`exercises/01_llm_basics/01_chat_completion.py`** — Build a travel assistant with single-turn and multi-turn conversations
-- **`exercises/01_llm_basics/02_system_prompts.py`** — See how the same query gets different responses with different personas
-- **`exercises/01_llm_basics/03_structured_outputs.py`** — Get structured JSON responses using Pydantic models
+- **Chat Completion** — Build a travel assistant with single-turn and multi-turn conversations
+- **System Prompts** — See how the same query gets different responses with different personas
+- **Structured Outputs** — Get structured JSON responses using Pydantic models
 
-```bash
-python exercises/01_llm_basics/01_chat_completion.py
-python exercises/01_llm_basics/02_system_prompts.py
-python exercises/01_llm_basics/03_structured_outputs.py
-```
+You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

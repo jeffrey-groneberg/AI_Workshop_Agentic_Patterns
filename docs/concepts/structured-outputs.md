@@ -117,8 +117,6 @@ class IncidentPlan(BaseModel):
 
 ## Hands-On Exercise
 
-- **`exercises/01_llm_basics/03_structured_outputs.py`** — Extract structured analysis from product reviews
+Head to the [LLM Basics exercises](../exercises/01_llm_basics.md) — specifically **03 Structured Outputs** to extract structured analysis from product reviews.
 
-```bash
-python exercises/01_llm_basics/03_structured_outputs.py
-```
+You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

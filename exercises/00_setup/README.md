@@ -27,4 +27,4 @@ A greeting from the model confirming connectivity, along with provider and model
 
 ## Next
 
-→ [Exercise 01: LLM Basics](../01_llm_basics/)
+→ [Exercise 01: LLM Basics](01_llm_basics.md)

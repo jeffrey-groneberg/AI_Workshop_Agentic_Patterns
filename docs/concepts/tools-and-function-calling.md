@@ -134,12 +134,9 @@ This is what Exercise `02_tool_use/02_tool_loop.py` implements explicitly — an
 
 ## Hands-On Exercises
 
-Now try it yourself:
+Now try it yourself — head to the [Tool Use exercises](../exercises/02_tool_use.md):
 
-- **`exercises/02_tool_use/01_function_calling.py`** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
-- **`exercises/02_tool_use/02_tool_loop.py`** — Build the full agent loop: reason → call tool → observe → repeat
+- **Function Calling** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
+- **Tool Loop** — Build the full agent loop: reason → call tool → observe → repeat
 
-```bash
-python exercises/02_tool_use/01_function_calling.py
-python exercises/02_tool_use/02_tool_loop.py
-```
+You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

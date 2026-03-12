@@ -54,6 +54,7 @@ nav:
   - Home: index.md
   - Setup:
       - Getting Started: setup.md
+      - Workshop TUI: workshop-tui.md
       - "✏️ Exercise":
           - Connection Test: exercises/00_setup.md
   - "1 - LLM Foundations":
@@ -90,3 +91,4 @@ nav:
       - Human in the Loop: production-considerations/human-in-the-loop.md
       - Choosing a Pattern: production-considerations/choosing-a-pattern.md
   - References: references.md
+  - All Exercises: all-exercises.md

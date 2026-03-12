@@ -208,8 +208,6 @@ graph TD
 
 ## Hands-On Exercise
 
-**`exercises/08_magentic/01_incident_response.py`** — Build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
+Head to the [Magentic exercise](../exercises/08_magentic.md) — build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
 
-```bash
-python exercises/08_magentic/01_incident_response.py
-```
+You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

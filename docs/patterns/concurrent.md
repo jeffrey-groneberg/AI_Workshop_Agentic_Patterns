@@ -131,8 +131,6 @@ graph TD
 
 ## Hands-On Exercise
 
-**`exercises/05_concurrent/01_stock_analysis.py`** — Build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
+Head to the [Concurrent exercise](../exercises/05_concurrent.md) — build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
 
-```bash
-python exercises/05_concurrent/01_stock_analysis.py
-```
+You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

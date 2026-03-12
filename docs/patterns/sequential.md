@@ -138,8 +138,6 @@ A 3-stage content pipeline where:
 
 ## Hands-On Exercise
 
-**`exercises/04_sequential/01_content_pipeline.py`** — Build a research → draft → edit pipeline with explicit context passing between stages.
+Head to the [Sequential exercise](../exercises/04_sequential.md) — build a research → draft → edit pipeline with explicit context passing between stages.
 
-```bash
-python exercises/04_sequential/01_content_pipeline.py
-```
+You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

@@ -103,8 +103,6 @@ By building the agent yourself, you understand what every framework does interna
 
 ## Hands-On Exercise
 
-- **`exercises/03_single_agent/01_customer_support_agent.py`** — A customer support agent with order lookup, FAQ search, and refund processing tools
+Head to the [Single Agent exercise](../exercises/03_single_agent.md) — build a customer support agent with order lookup, FAQ search, and refund processing tools.
 
-```bash
-python exercises/03_single_agent/01_customer_support_agent.py
-```
+You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

@@ -28,4 +28,4 @@ Logging showing the task ledger being built, tasks assigned to workers, worker r
 
 ## Next
 
-→ Return to the [documentation site](../../docs/) to review implementation considerations.
+→ Return to the [documentation site](../production-considerations/index.md) to review implementation considerations.

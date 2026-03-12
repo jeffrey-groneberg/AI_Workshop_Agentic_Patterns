@@ -27,4 +27,4 @@ Logging showing parallel agent launches, individual completions, and the final a
 
 ## Next
 
-→ [Exercise 06: Group Chat Pattern](../06_group_chat/)
+→ [Exercise 06: Group Chat Pattern](06_group_chat.md)

@@ -29,4 +29,4 @@ Turn-by-turn logging showing which agent speaks, the shared conversation growing
 
 ## Next
 
-→ [Exercise 07: Handoff Pattern](../07_handoff/)
+→ [Exercise 07: Handoff Pattern](07_handoff.md)

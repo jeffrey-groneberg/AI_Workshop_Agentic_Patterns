@@ -131,8 +131,6 @@ graph TD
 
 ## Hands-On Exercise
 
-**`exercises/07_handoff/01_support_triage.py`** — Build a support triage system that classifies queries and routes to billing, technical, or account specialists.
+Head to the [Handoff exercise](../exercises/07_handoff.md) — build a support triage system that classifies queries and routes to billing, technical, or account specialists.
 
-```bash
-python exercises/07_handoff/01_support_triage.py
-```
+You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

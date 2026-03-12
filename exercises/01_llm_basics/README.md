@@ -31,4 +31,4 @@ Each script produces structured logging showing the LLM interaction, the message
 
 ## Next
 
-→ [Exercise 02: Tool Use](../02_tool_use/)
+→ [Exercise 02: Tool Use](02_tool_use.md)

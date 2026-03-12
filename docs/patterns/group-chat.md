@@ -195,10 +195,9 @@ graph LR
 
 ## Hands-On Exercises
 
-- **`exercises/06_group_chat/01_brainstorm.py`** — PM, Designer, and Engineer debate a product idea in rounds
-- **`exercises/06_group_chat/02_maker_checker.py`** — Code generator + reviewer in a reflection loop
+Head to the [Group Chat exercises](../exercises/06_group_chat.md):
 
-```bash
-python exercises/06_group_chat/01_brainstorm.py
-python exercises/06_group_chat/02_maker_checker.py
-```
+- **Brainstorm** — PM, Designer, and Engineer debate a product idea in rounds
+- **Maker-Checker** — Code generator + reviewer in a reflection loop
+
+You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

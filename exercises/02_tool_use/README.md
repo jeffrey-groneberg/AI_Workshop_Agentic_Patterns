@@ -31,4 +31,4 @@ Structured logging showing each loop iteration, tool calls with arguments, tool 
 
 ## Next
 
-→ [Exercise 03: Single Agent](../03_single_agent/)
+→ [Exercise 03: Single Agent](03_single_agent.md)
