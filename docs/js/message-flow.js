@@ -149,13 +149,17 @@
 
         msgs.forEach(function (m) {
           var card = el('div', 'mf-card mf-card--' + m.role + (m.isNew ? ' mf-card--new' : ''));
+          var dir = getDirection(m.role);
 
           var cardHeader = el('div', 'mf-card-header');
           var roleLabel  = el('span', 'mf-role');
           roleLabel.textContent = m.role;
+          var dirBadge = el('span', 'mf-direction mf-direction--' + dir.type);
+          dirBadge.textContent = dir.badge;
           var agentLabel = el('span', 'mf-agent');
           agentLabel.textContent = m.agent;
           cardHeader.appendChild(roleLabel);
+          cardHeader.appendChild(dirBadge);
           cardHeader.appendChild(agentLabel);
 
           var content = el('div', 'mf-content');
@@ -166,17 +170,19 @@
 
           // Collapsible API payload
           if (m.payload) {
-            var toggleBtn = el('button', 'mf-payload-toggle');
-            toggleBtn.textContent = '{ } Show API Payload';
+            var toggleBtn = el('button', 'mf-payload-toggle mf-payload-toggle--' + dir.type);
+            toggleBtn.textContent = '{ } Show ' + dir.payloadLabel;
+            toggleBtn.setAttribute('data-label', dir.payloadLabel);
             toggleBtn.addEventListener('click', function () {
               var block = this.nextElementSibling;
+              var label = this.getAttribute('data-label');
               if (block.style.display === 'none') {
                 block.style.display = 'block';
-                this.textContent = '{ } Hide API Payload';
+                this.textContent = '{ } Hide ' + label;
                 this.classList.add('mf-payload-toggle--active');
               } else {
                 block.style.display = 'none';
-                this.textContent = '{ } Show API Payload';
+                this.textContent = '{ } Show ' + label;
                 this.classList.remove('mf-payload-toggle--active');
               }
             });
@@ -210,6 +216,27 @@
     }
 
     render();
+  }
+
+  /* ── Direction helper ────────────────────────────── */
+  function getDirection(role) {
+    switch (role) {
+      case 'system':
+      case 'user':
+        return { type: 'request', badge: '📤 REQUEST', payloadLabel: 'Request Payload' };
+      case 'assistant':
+        return { type: 'response', badge: '📥 RESPONSE', payloadLabel: 'Response Payload' };
+      case 'tool_calls':
+        return { type: 'response', badge: '📥 RESPONSE', payloadLabel: 'Response Payload' };
+      case 'structured':
+        return { type: 'response', badge: '📥 RESPONSE', payloadLabel: 'Response Payload' };
+      case 'tool':
+        return { type: 'client-request', badge: '🖥️ → 📤', payloadLabel: 'Execution Result' };
+      case 'handoff':
+        return { type: 'client', badge: '🖥️ CLIENT', payloadLabel: 'Client Data' };
+      default:
+        return { type: 'request', badge: '📤', payloadLabel: 'Payload' };
+    }
   }
 
   /* ── Helper ───────────────────────────────────────── */
