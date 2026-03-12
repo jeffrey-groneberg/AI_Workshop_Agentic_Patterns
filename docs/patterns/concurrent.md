@@ -131,6 +131,6 @@ graph TD
 
 ## Hands-On Exercise
 
-Head to the [Concurrent exercise](../exercises/05_concurrent.md) — build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
+Head to the [Concurrent exercise](../exercises/05_concurrent.md){:target="_blank"} — build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
 
 You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

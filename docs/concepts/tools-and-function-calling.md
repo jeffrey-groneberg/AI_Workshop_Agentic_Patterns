@@ -113,7 +113,7 @@ graph TD
 
 The loop continues until the model decides it has enough information to respond with text (`finish_reason="stop"`) rather than requesting more tool calls.
 
-This is what Exercise `02_tool_use/02_tool_loop.py` implements explicitly — and what the shared `Agent` + `run()` function encapsulates for later exercises.
+This is what [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} (`02_tool_use/02_tool_loop.py`) implements explicitly — and what the shared `Agent` + `run()` function encapsulates for later exercises.
 
 !!! tip "Ready to practice?"
     Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
@@ -134,7 +134,7 @@ This is what Exercise `02_tool_use/02_tool_loop.py` implements explicitly — an
 
 ## Hands-On Exercises
 
-Now try it yourself — head to the [Tool Use exercises](../exercises/02_tool_use.md):
+Now try it yourself — head to the [Tool Use exercises](../exercises/02_tool_use.md){:target="_blank"}:
 
 - **Function Calling** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
 - **Tool Loop** — Build the full agent loop: reason → call tool → observe → repeat

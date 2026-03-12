@@ -55,7 +55,7 @@ sequenceDiagram
 
 ### Three Context Passing Options
 
-The exercise implements **Option 2** (structured handoff) and includes comments showing the alternatives:
+The [exercise](../exercises/07_handoff.md){:target="_blank"} implements **Option 2** (structured handoff) and includes comments showing the alternatives:
 
 | Option | What Gets Passed | Pros | Cons |
 |--------|-----------------|------|------|
@@ -131,6 +131,6 @@ graph TD
 
 ## Hands-On Exercise
 
-Head to the [Handoff exercise](../exercises/07_handoff.md) — build a support triage system that classifies queries and routes to billing, technical, or account specialists.
+Head to the [Handoff exercise](../exercises/07_handoff.md){:target="_blank"} — build a support triage system that classifies queries and routes to billing, technical, or account specialists.
 
 You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

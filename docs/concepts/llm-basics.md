@@ -120,7 +120,7 @@ This is the foundation of **agent identity** — when we build multi-agent syste
 
 ## Hands-On Exercises
 
-Now try it yourself — head to the [LLM Basics exercises](../exercises/01_llm_basics.md):
+Now try it yourself — head to the [LLM Basics exercises](../exercises/01_llm_basics.md){:target="_blank"}:
 
 - **Chat Completion** — Build a travel assistant with single-turn and multi-turn conversations
 - **System Prompts** — See how the same query gets different responses with different personas

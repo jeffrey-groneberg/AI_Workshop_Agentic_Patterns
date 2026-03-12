@@ -1,12 +1,12 @@
 # The Agent Run Loop
 
-In Exercise 02 you built the agent loop **by hand** — calling the API, checking for tool calls, executing them, appending results, and looping back. From Exercise 03 onward, every exercise uses a shared `run()` function that encapsulates exactly that loop.
+In [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} you built the agent loop **by hand** — calling the API, checking for tool calls, executing them, appending results, and looping back. From [Exercise 03](../exercises/03_single_agent.md){:target="_blank"} onward, every exercise uses a shared `run()` function that encapsulates exactly that loop.
 
 This page walks through `run()` line by line so there's nothing hidden.
 
 ## From Manual Loop to `run()`
 
-Here's the connection. In Exercise 02 you wrote something like this:
+Here's the connection. In [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} you wrote something like this:
 
 ```python
 while True:
@@ -268,12 +268,12 @@ Every exercise from 03 onward uses this function:
 
 | Exercise | How it uses `run()` |
 |----------|-------------------|
-| **03 — Single Agent** | One agent, multiple turns, messages list grows across turns |
-| **04 — Sequential** | Each agent gets a **fresh** messages list with only the previous output |
-| **05 — Concurrent** | Multiple `run()` calls in parallel (via `ThreadPoolExecutor`) |
-| **06 — Group Chat** | Multiple agents share **one** messages list |
-| **07 — Handoff** | Triage agent → structured output → specialist agent gets a **new** messages list |
-| **08 — Magentic** | Manager dispatches tasks → workers run independently → results feed back |
+| [**03 — Single Agent**](../exercises/03_single_agent.md){:target="_blank"} | One agent, multiple turns, messages list grows across turns |
+| [**04 — Sequential**](../exercises/04_sequential.md){:target="_blank"} | Each agent gets a **fresh** messages list with only the previous output |
+| [**05 — Concurrent**](../exercises/05_concurrent.md){:target="_blank"} | Multiple `run()` calls in parallel (via `ThreadPoolExecutor`) |
+| [**06 — Group Chat**](../exercises/06_group_chat.md){:target="_blank"} | Multiple agents share **one** messages list |
+| [**07 — Handoff**](../exercises/07_handoff.md){:target="_blank"} | Triage agent → structured output → specialist agent gets a **new** messages list |
+| [**08 — Magentic**](../exercises/08_magentic.md){:target="_blank"} | Manager dispatches tasks → workers run independently → results feed back |
 
 The function is always the same — only the **orchestration** around it changes. That's the whole point of this workshop.
 

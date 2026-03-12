@@ -208,6 +208,6 @@ graph TD
 
 ## Hands-On Exercise
 
-Head to the [Magentic exercise](../exercises/08_magentic.md) — build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
+Head to the [Magentic exercise](../exercises/08_magentic.md){:target="_blank"} — build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
 
 You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).

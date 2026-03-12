@@ -61,7 +61,7 @@ sequenceDiagram
 - Token usage stays efficient (each call is small)
 - Agents can't be confused by irrelevant prior conversation
 
-**Trade-off**: If a later agent needs info from an earlier stage, you must explicitly pass it. The exercise uses `log_context_pass()` to make this visible.
+**Trade-off**: If a later agent needs info from an earlier stage, you must explicitly pass it. The [exercise](../exercises/04_sequential.md){:target="_blank"} uses `log_context_pass()` to make this visible.
 
 ## What We're Building
 
@@ -138,6 +138,6 @@ A 3-stage content pipeline where:
 
 ## Hands-On Exercise
 
-Head to the [Sequential exercise](../exercises/04_sequential.md) — build a research → draft → edit pipeline with explicit context passing between stages.
+Head to the [Sequential exercise](../exercises/04_sequential.md){:target="_blank"} — build a research → draft → edit pipeline with explicit context passing between stages.
 
 You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

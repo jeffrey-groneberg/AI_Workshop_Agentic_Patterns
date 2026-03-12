@@ -109,6 +109,6 @@ Notice the loop iterations — the agent reasons about what to do, calls tools, 
 
 ## Hands-On Exercise
 
-Head to the [Single Agent exercise](../exercises/03_single_agent.md) — build a customer support agent with order lookup, FAQ search, and refund processing.
+Head to the [Single Agent exercise](../exercises/03_single_agent.md){:target="_blank"} — build a customer support agent with order lookup, FAQ search, and refund processing.
 
 You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).

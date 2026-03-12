@@ -99,7 +99,7 @@ sequenceDiagram
 
 ## What We're Building
 
-### Exercise 1: Brainstorm
+### [Exercise 1: Brainstorm](../exercises/06_group_chat.md){:target="_blank"}
 
 ```mermaid
 graph TD
@@ -116,7 +116,7 @@ graph TD
     style E fill:#4CAF50,color:white
 ```
 
-### Exercise 2: Maker-Checker
+### [Exercise 2: Maker-Checker](../exercises/06_group_chat.md){:target="_blank"}
 
 ```mermaid
 graph LR
@@ -195,7 +195,7 @@ graph LR
 
 ## Hands-On Exercises
 
-Head to the [Group Chat exercises](../exercises/06_group_chat.md):
+Head to the [Group Chat exercises](../exercises/06_group_chat.md){:target="_blank"}:
 
 - **Brainstorm** — PM, Designer, and Engineer debate a product idea in rounds
 - **Maker-Checker** — Code generator + reviewer in a reflection loop

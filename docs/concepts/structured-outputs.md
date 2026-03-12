@@ -117,6 +117,6 @@ class IncidentPlan(BaseModel):
 
 ## Hands-On Exercise
 
-Head to the [LLM Basics exercises](../exercises/01_llm_basics.md) — specifically **03 Structured Outputs** to extract structured analysis from product reviews.
+Head to the [LLM Basics exercises](../exercises/01_llm_basics.md){:target="_blank"} — specifically **03 Structured Outputs** to extract structured analysis from product reviews.
 
 You can run it from the terminal or use the [Workshop TUI](../workshop-tui.md).
