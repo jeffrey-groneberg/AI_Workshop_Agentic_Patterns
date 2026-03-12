@@ -1,0 +1,31 @@
+{
+  "name": "Agentic AI Workshop",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "pip install -r requirements.txt && cp .env.example .env 2>/dev/null || true",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.terminal.activateEnvironment": true,
+        "editor.formatOnSave": true,
+        "files.trimTrailingWhitespace": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "github.copilot",
+        "github.copilot-chat"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "MkDocs",
+      "onAutoForward": "notify"
+    }
+  }
+}

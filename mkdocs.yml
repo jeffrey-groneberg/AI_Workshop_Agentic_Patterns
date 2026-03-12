@@ -1,0 +1,76 @@
+site_name: "Agentic AI Design Patterns Workshop"
+site_description: "A hands-on workshop teaching agentic AI design patterns using pure Python and the OpenAI SDK"
+site_url: ""
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - Concepts:
+      - LLM Basics: concepts/llm-basics.md
+      - Tools & Function Calling: concepts/tools-and-function-calling.md
+      - Structured Outputs: concepts/structured-outputs.md
+      - What Is an Agent?: concepts/what-is-an-agent.md
+      - Responses API: concepts/responses-api.md
+      - Orchestration Overview: concepts/orchestration-overview.md
+  - Patterns:
+      - Single Agent: patterns/single-agent.md
+      - Sequential: patterns/sequential.md
+      - Concurrent: patterns/concurrent.md
+      - Group Chat: patterns/group-chat.md
+      - Handoff: patterns/handoff.md
+      - Magentic: patterns/magentic.md
+  - Production Considerations:
+      - Overview: production-considerations/index.md
+      - Context Management: production-considerations/context-management.md
+      - Reliability: production-considerations/reliability.md
+      - Human in the Loop: production-considerations/human-in-the-loop.md
+      - Choosing a Pattern: production-considerations/choosing-a-pattern.md
+  - References: references.md
