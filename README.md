@@ -122,11 +122,11 @@ Chapter-by-chapter slide decks to guide participants through the workshop:
 
 | Chapter | File | Topics |
 |---------|------|--------|
-| **1 — LLM Foundations** | [`Chapter1_LLM_Foundations.pptx`](Chapter1_LLM_Foundations.pptx) | Workshop overview, commons module, Chat API, system prompts, structured outputs |
-| **2 — Tools & Function Calling** | [`Chapter2_Tools_Function_Calling.pptx`](Chapter2_Tools_Function_Calling.pptx) | Tool definitions, 4-step cycle, agent loop, mock tools |
-| **3 — Single Agent** | [`Chapter3_Single_Agent.pptx`](Chapter3_Single_Agent.pptx) | Agent dataclass, run() function, persistent conversation |
-| **4 — Multi-Agent Orchestration** | [`Chapter4_Multi_Agent.pptx`](Chapter4_Multi_Agent.pptx) | Sequential, concurrent, group chat, maker-checker |
-| **5 — Advanced Patterns** | [`Chapter5_Advanced_Patterns.pptx`](Chapter5_Advanced_Patterns.pptx) | Handoff, magentic, choosing patterns, context management, reliability |
+| **1 — LLM Foundations** | [`Chapter1_LLM_Foundations.pdf`](docs/slides/Chapter1_LLM_Foundations.pdf) | Workshop overview, commons module, Chat API, system prompts, structured outputs |
+| **2 — Tools & Function Calling** | [`Chapter2_Tools_Function_Calling.pdf`](docs/slides/Chapter2_Tools_Function_Calling.pdf) | Tool definitions, 4-step cycle, agent loop, mock tools |
+| **3 — Single Agent** | [`Chapter3_Single_Agent.pdf`](docs/slides/Chapter3_Single_Agent.pdf) | Agent dataclass, run() function, persistent conversation |
+| **4 — Multi-Agent Orchestration** | [`Chapter4_Multi_Agent.pdf`](docs/slides/Chapter4_Multi_Agent.pdf) | Sequential, concurrent, group chat, maker-checker |
+| **5 — Advanced Patterns** | [`Chapter5_Advanced_Patterns.pdf`](docs/slides/Chapter5_Advanced_Patterns.pdf) | Handoff, magentic, choosing patterns, context management, reliability |
 
 ## Learning Path
 
