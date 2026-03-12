@@ -61,6 +61,13 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+.share-cta__btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 .share-cta__btn--linkedin  { background: #0A66C2; }
 .share-cta__btn--x         { background: #000;    }
 .share-cta__btn--substack   { background: #FF6719; }
