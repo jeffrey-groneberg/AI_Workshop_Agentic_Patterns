@@ -66,3 +66,30 @@ Every exercise works with any of these providers — just set `LLM_PROVIDER` in 
 
 !!! tip "Read first, then code"
     Each pattern has a **documentation page** (you're reading the docs now) and a **hands-on exercise** in the `exercises/` folder. Always read the docs page first to understand *what* and *why*, then open the exercise to see *how* and practice.
+
+---
+
+## Spread the Word :material-share-variant:
+
+If you find this workshop useful, share it with your network — it helps others discover these patterns too!
+
+<div class="share-cta" markdown="block">
+<a class="share-cta__btn share-cta__btn--linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns" target="_blank" rel="noopener" title="Share on LinkedIn">
+:fontawesome-brands-linkedin: LinkedIn
+</a>
+<a class="share-cta__btn share-cta__btn--x" href="https://x.com/intent/tweet?text=Check%20out%20this%20hands-on%20workshop%20on%20Agentic%20AI%20Design%20Patterns%20%E2%80%94%20pure%20Python%2C%20no%20frameworks!&url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns" target="_blank" rel="noopener" title="Share on X">
+:fontawesome-brands-x-twitter: X
+</a>
+<a class="share-cta__btn share-cta__btn--substack" href="https://substack.com/share?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns&title=Agentic%20AI%20Design%20Patterns%20Workshop" target="_blank" rel="noopener" title="Share on Substack">
+:fontawesome-brands-stripe-s: Substack
+</a>
+<a class="share-cta__btn share-cta__btn--reddit" href="https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns&title=Agentic%20AI%20Design%20Patterns%20Workshop" target="_blank" rel="noopener" title="Share on Reddit">
+:fontawesome-brands-reddit-alien: Reddit
+</a>
+<a class="share-cta__btn share-cta__btn--hn" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns&t=Agentic%20AI%20Design%20Patterns%20Workshop" target="_blank" rel="noopener" title="Share on Hacker News">
+:fontawesome-brands-hacker-news: Hacker News
+</a>
+<a class="share-cta__btn share-cta__btn--github" href="https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns" target="_blank" rel="noopener" title="Star on GitHub">
+:fontawesome-brands-github: Star on GitHub
+</a>
+</div>

@@ -30,3 +30,38 @@
   height: 1rem;
   fill: currentColor;
 }
+
+/* ── Homepage share CTA ── */
+.share-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.share-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.share-cta__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.share-cta__btn--linkedin  { background: #0A66C2; }
+.share-cta__btn--x         { background: #000;    }
+.share-cta__btn--substack   { background: #FF6719; }
+.share-cta__btn--reddit     { background: #FF4500; }
+.share-cta__btn--hn         { background: #F06426; }
+.share-cta__btn--github     { background: #24292f; }
+
+[data-md-color-scheme="slate"] .share-cta__btn--x { background: #e7e9ea; color: #000 !important; }
