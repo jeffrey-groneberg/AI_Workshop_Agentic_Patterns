@@ -1,4 +1,4 @@
-# LLM Basics
+# Chat Completions API
 
 !!! tip "Chapter Slides"
     [:material-file-pdf-box: Download Chapter 1 — LLM Foundations (PDF)](../slides/Chapter1_LLM_Foundations.pdf){:target="_blank"}
@@ -89,30 +89,12 @@ print(response.usage.total_tokens)       # Total
 
 Understanding token usage matters for cost control and for staying within context window limits (see [Context Management](../production-considerations/context-management.md)).
 
-## System Prompts Shape Agent Identity
-
-System prompts are the primary way to define an agent's personality, expertise, and constraints. The same query with different system prompts produces completely different responses:
-
-```python
-# Formal advisor
-{"role": "system", "content": "You are a senior financial advisor. Be precise and professional."}
-
-# Casual buddy
-{"role": "system", "content": "You are a chill friend who knows about money. Keep it casual."}
-```
-
-This is the foundation of **agent identity** — when we build multi-agent systems later, each agent gets a different system prompt that defines its role.
-
-!!! tip "Ready to practice?"
-    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
-
 ## Key Takeaways
 
 1. The Chat Completions API is **stateless** — you send the full conversation every time
 2. **Roles** define who said what: `system`, `user`, `assistant`, `tool`
 3. **Temperature** controls randomness — use low values for agents
-4. **System prompts** define agent identity — the same model becomes different agents with different prompts
-5. **You** manage conversation state — the API doesn't remember previous calls
+4. **You** manage conversation state — the API doesn't remember previous calls
 
 ## References
 
@@ -121,12 +103,8 @@ This is the foundation of **agent identity** — when we build multi-agent syste
 - [Andrej Karpathy — "Intro to Large Language Models" (YouTube)](https://www.youtube.com/watch?v=zjkBMFhNj_g)
 - [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering)
 
-## Hands-On Exercises
+## Hands-On Exercise
 
-Now try it yourself — head to the [LLM Basics exercises](../exercises/01_llm_basics.md){:target="_blank"}:
+Now try it yourself — head to the [Chat Completion exercise](../exercises/01_chat_completion.md){:target="_blank"} to build a travel assistant with single-turn and multi-turn conversations.
 
-- **Chat Completion** — Build a travel assistant with single-turn and multi-turn conversations
-- **System Prompts** — See how the same query gets different responses with different personas
-- **Structured Outputs** — Get structured JSON responses using Pydantic models
-
-You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).
+You can run exercises from the terminal or use the [Workshop TUI](../workshop-tui.md).

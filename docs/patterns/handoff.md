@@ -31,7 +31,7 @@ graph TD
 ## When to Avoid
 
 - All queries need the **same set of tools** (use [Single Agent](single-agent.md))
-- Tasks need multiple specialists to **collaborate** (use [Group Chat](group-chat.md))
+- Tasks need multiple specialists to **collaborate** (use [Brainstorm](brainstorm.md) or [Maker-Checker](maker-checker.md))
 - The plan needs to **adapt based on findings** (use [Magentic](magentic.md))
 
 ## Context Passing Strategy

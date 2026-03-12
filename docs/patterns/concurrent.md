@@ -33,7 +33,7 @@ graph TD
 
 ## When to Avoid
 
-- Agents need to **see each other's output** (use [Group Chat](group-chat.md))
+- Agents need to **see each other's output** (use [Brainstorm](brainstorm.md) or [Maker-Checker](maker-checker.md))
 - One agent's output determines **what other agents do** (use [Sequential](sequential.md) or [Handoff](handoff.md))
 - The task is inherently serial
 

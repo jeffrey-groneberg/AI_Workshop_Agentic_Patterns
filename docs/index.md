@@ -60,7 +60,7 @@ Every exercise works with any of these providers — just set `LLM_PROVIDER` in 
 ## Getting Started
 
 1. Read the [Setup Guide](setup.md) to configure your environment
-2. Work through the [Concepts](concepts/llm-basics.md) section to build foundations
+2. Work through the [Concepts](concepts/chat-completions-api.md) section to build foundations
 3. Tackle each [Pattern](patterns/single-agent.md) with its corresponding exercise
 4. Review [Production Considerations](production-considerations/index.md) for real-world engineering challenges
 

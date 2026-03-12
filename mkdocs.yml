@@ -68,31 +68,37 @@ nav:
       - "✏️ Exercise":
           - Connection Test: exercises/00_setup.md
   - "1 - LLM Foundations":
-      - LLM Basics: concepts/llm-basics.md
+      - Chat Completions API: concepts/chat-completions-api.md
+      - System Prompts: concepts/system-prompts.md
       - Structured Outputs: concepts/structured-outputs.md
       - What Is an Agent?: concepts/what-is-an-agent.md
       - Responses API: concepts/responses-api.md
       - "✏️ Exercises":
-          - LLM Basics: exercises/01_llm_basics.md
+          - Chat Completion: exercises/01_chat_completion.md
+          - System Prompts: exercises/01_system_prompts.md
+          - Structured Outputs: exercises/01_structured_outputs.md
   - "2 - Tools & Function Calling":
-      - Tools & Function Calling: concepts/tools-and-function-calling.md
+      - Function Calling: concepts/function-calling.md
       - Payload Walkthrough: concepts/payload-walkthrough.md
       - The Agent Run Loop: concepts/agent-run-loop.md
       - "✏️ Exercises":
-          - Tool Use: exercises/02_tool_use.md
+          - Function Calling: exercises/02_function_calling.md
+          - Tool Loop: exercises/02_tool_loop.md
   - "3 - Agent Patterns":
       - Orchestration Overview: concepts/orchestration-overview.md
       - Single Agent: patterns/single-agent.md
       - Sequential: patterns/sequential.md
       - Concurrent: patterns/concurrent.md
-      - Group Chat: patterns/group-chat.md
+      - Brainstorm (Round-Robin): patterns/brainstorm.md
+      - Maker-Checker (Reflection): patterns/maker-checker.md
       - Handoff: patterns/handoff.md
       - Magentic: patterns/magentic.md
       - "✏️ Exercises":
           - Single Agent: exercises/03_single_agent.md
           - Sequential: exercises/04_sequential.md
           - Concurrent: exercises/05_concurrent.md
-          - Group Chat: exercises/06_group_chat.md
+          - Brainstorm: exercises/06_brainstorm.md
+          - Maker-Checker: exercises/06_maker_checker.md
           - Handoff: exercises/07_handoff.md
           - Magentic: exercises/08_magentic.md
   - Production Considerations:

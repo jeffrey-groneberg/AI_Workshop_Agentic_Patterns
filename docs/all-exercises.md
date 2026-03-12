@@ -15,20 +15,20 @@ A quick-reference index of every hands-on exercise in the workshop. Click any ex
 
 | Exercise | Description |
 |----------|-------------|
-| [Chat Completion](exercises/01_llm_basics.md) | Single-turn and multi-turn conversations with a travel assistant |
-| [System Prompts](exercises/01_llm_basics.md) | Same query, different personas — see how system prompts shape behavior |
-| [Structured Outputs](exercises/01_llm_basics.md) | Extract structured JSON from product reviews using Pydantic models |
+| [Chat Completion](exercises/01_chat_completion.md) | Single-turn and multi-turn conversations with a travel assistant |
+| [System Prompts](exercises/01_system_prompts.md) | Same query, different personas — see how system prompts shape behavior |
+| [Structured Outputs](exercises/01_structured_outputs.md) | Extract structured JSON from product reviews using Pydantic models |
 
-**Concepts:** [LLM Basics](concepts/llm-basics.md) · [Structured Outputs](concepts/structured-outputs.md) · [What Is an Agent?](concepts/what-is-an-agent.md)
+**Concepts:** [Chat Completions API](concepts/chat-completions-api.md) · [System Prompts](concepts/system-prompts.md) · [Structured Outputs](concepts/structured-outputs.md) · [What Is an Agent?](concepts/what-is-an-agent.md)
 
 ## 2 — Tools & Function Calling
 
 | Exercise | Description |
 |----------|-------------|
-| [Function Calling](exercises/02_tool_use.md) | Define tools with `pydantic_function_tool()` and make a single-pass tool call |
-| [Tool Loop](exercises/02_tool_use.md) | Build the full agent loop: reason → call tool → observe → repeat |
+| [Function Calling](exercises/02_function_calling.md) | Define tools with `pydantic_function_tool()` and make a single-pass tool call |
+| [Tool Loop](exercises/02_tool_loop.md) | Build the full agent loop: reason → call tool → observe → repeat |
 
-**Concepts:** [Tools & Function Calling](concepts/tools-and-function-calling.md) · [The Agent Run Loop](concepts/agent-run-loop.md)
+**Concepts:** [Function Calling](concepts/function-calling.md) · [The Agent Run Loop](concepts/agent-run-loop.md)
 
 ## 3 — Single Agent
 
@@ -58,10 +58,10 @@ A quick-reference index of every hands-on exercise in the workshop. Click any ex
 
 | Exercise | Description |
 |----------|-------------|
-| [Brainstorm](exercises/06_group_chat.md) | PM, Designer, and Engineer debate a product idea in rounds |
-| [Maker-Checker](exercises/06_group_chat.md) | Code generator + reviewer in a reflection loop |
+| [Brainstorm](exercises/06_brainstorm.md) | PM, Designer, and Engineer debate a product idea in rounds |
+| [Maker-Checker](exercises/06_maker_checker.md) | Code generator + reviewer in a reflection loop |
 
-**Pattern:** [Group Chat](patterns/group-chat.md)
+**Patterns:** [Brainstorm (Round-Robin)](patterns/brainstorm.md) · [Maker-Checker (Reflection)](patterns/maker-checker.md)
 
 ## 7 — Handoff Pattern
 

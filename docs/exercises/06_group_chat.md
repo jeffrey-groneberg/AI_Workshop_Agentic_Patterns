@@ -1,1 +1,0 @@
-../../exercises/06_group_chat//README.md

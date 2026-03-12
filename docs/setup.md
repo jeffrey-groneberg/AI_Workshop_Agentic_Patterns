@@ -157,4 +157,4 @@ Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
 ## Next Steps
 
-Once your connection test passes, proceed to [LLM Basics](concepts/llm-basics.md) to start learning.
+Once your connection test passes, proceed to [Chat Completions API](concepts/chat-completions-api.md) to start learning.

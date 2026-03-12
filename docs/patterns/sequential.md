@@ -29,7 +29,7 @@ graph LR
 ## When to Avoid
 
 - Stages could run **independently** (use [Concurrent](concurrent.md) instead)
-- The task requires **back-and-forth** between agents (use [Group Chat](group-chat.md))
+- The task requires **back-and-forth** between agents (use [Brainstorm](brainstorm.md) or [Maker-Checker](maker-checker.md))
 - One stage's output determines **which** agent runs next (use [Handoff](handoff.md))
 
 ## Context Passing Strategy

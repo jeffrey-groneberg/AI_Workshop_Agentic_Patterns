@@ -2,7 +2,7 @@
 
 This page shows the **exact JSON payloads** exchanged between your code and the OpenAI API during function calling and the agent loop. No hand-waving — every field explained.
 
-We'll trace through the weather assistant from [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} step by step.
+We'll trace through the weather assistant from [Exercise 02: Function Calling](../exercises/02_function_calling.md){:target="_blank"} step by step.
 
 ---
 

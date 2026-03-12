@@ -1,6 +1,6 @@
-# Group Chat Pattern
+# Brainstorm (Round-Robin) Pattern
 
-The group chat pattern puts multiple agents in a shared conversation where they take turns, building on each other's messages. This includes the **maker-checker** (reflection) sub-pattern.
+The brainstorm pattern puts multiple agents in a shared conversation where they take turns in a **fixed, repeating order** (round-robin), building on each other's messages.
 
 ## Pattern Architecture
 
@@ -24,14 +24,15 @@ graph TD
 
 - The task benefits from **multiple perspectives debating** the same problem
 - Agents need to **build on each other's ideas**
-- **Iterative refinement** — one agent creates, another critiques, repeat
-- Examples: brainstorming, code review, collaborative writing
+- You want **predictable, democratic** conversations where every voice is heard equally
+- Examples: brainstorming, collaborative planning, requirements gathering
 
 ## When to Avoid
 
 - Agents don't need to see each other's output (use [Concurrent](concurrent.md))
 - Tasks have a clear linear flow (use [Sequential](sequential.md))
 - You need dynamic routing (use [Handoff](handoff.md))
+- You need iterative quality refinement (use [Maker-Checker](maker-checker.md))
 
 ## Context Passing Strategy
 
@@ -63,43 +64,9 @@ sequenceDiagram
 
 **Trade-off**: The message list grows with every turn, which can hit token limits in long discussions. For production systems, consider summarization between rounds.
 
-## Variant: Maker-Checker (Reflection)
-
-The maker-checker is a two-agent group chat with a specific structure:
-
-```mermaid
-graph LR
-    M[Maker<br/>Code Generator] -->|Code| C[Checker<br/>Code Reviewer]
-    C -->|Feedback| M
-    C -->|APPROVED| O[Output]
-
-    style M fill:#2196F3,color:white
-    style C fill:#F44336,color:white
-```
-
-1. **Maker** produces output (code, text, plan)
-2. **Checker** reviews and provides feedback
-3. **Maker** revises based on feedback
-4. Loop until **Checker** approves or max iterations reached
-
-This maps to the **Evaluator-Optimizer** pattern from Anthropic's "Building Effective Agents" and the **Reflection** pattern from Andrew Ng's agentic patterns talk.
-
-```mermaid
-sequenceDiagram
-    participant G as Generator
-    participant R as Reviewer
-    participant Conv as Shared Messages
-
-    G->>Conv: Initial code implementation
-    R->>Conv: "Missing error handling, add input validation"
-    G->>Conv: Revised code with error handling
-    R->>Conv: "APPROVED — code is clean and complete"
-    Note over G,Conv: Loop exits on APPROVED keyword
-```
-
 ## What We're Building
 
-### [Exercise 1: Brainstorm](../exercises/06_group_chat.md){:target="_blank"}
+### [Brainstorm Exercise](../exercises/06_brainstorm.md){:target="_blank"}
 
 ```mermaid
 graph TD
@@ -116,22 +83,7 @@ graph TD
     style E fill:#4CAF50,color:white
 ```
 
-### [Exercise 2: Maker-Checker](../exercises/06_group_chat.md){:target="_blank"}
-
-```mermaid
-graph LR
-    T[Task: Sort algorithm] --> G[Code Generator]
-    G -->|Code| R[Code Reviewer]
-    R -->|Critique| G
-    R -->|APPROVED| F[Final Code]
-
-    style G fill:#2196F3,color:white
-    style R fill:#F44336,color:white
-```
-
 ## Expected Console Output
-
-### Brainstorm
 
 ```
 ══════════════════════════════════════════════════════════════════
@@ -155,49 +107,25 @@ graph LR
 [INFO] [Product Manager] Building on the accessibility points...
 ```
 
-### Maker-Checker
-
-```
-══════════════════════════════════════════════════════════════════
-  Group Chat: Maker-Checker
-══════════════════════════════════════════════════════════════════
-
-[INFO] [Code Generator] Iteration 1:
-       def sort_list(lst): ...
-
-[INFO] [Code Reviewer] Iteration 1:
-       Issues found: No type hints, missing docstring...
-
-[INFO] [Code Generator] Iteration 2:
-       def sort_list(lst: list[int]) -> list[int]: ...
-
-[INFO] [Code Reviewer] Iteration 2:
-       APPROVED — Clean, well-documented implementation.
-```
-
 !!! tip "Ready to practice?"
     Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
-1. Group chat = **shared conversation** — all agents see the full history
-2. A **chat manager** controls turn order and termination
-3. **Maker-checker** is a specialized 2-agent group chat for iterative refinement
+1. Round-robin = **fixed, repeating turn order** — predictable and democratic
+2. All agents share the **same conversation thread** — each sees the full history
+3. A **chat manager** controls turn order and termination
 4. Shared context enables agents to build on each other's ideas
 5. Watch token usage — shared conversations grow with every turn
 
 ## References
 
 - [MS Learn — Group Chat Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
-- [Anthropic — Evaluator-Optimizer Pattern](https://www.anthropic.com/engineering/building-effective-agents)
-- [Andrew Ng — Reflection Pattern (YouTube)](https://www.youtube.com/watch?v=sal78ACtGTc)
-- [Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al., 2023)](https://arxiv.org/abs/2303.11366)
+- [Andrew Ng — Multi-Agent Collaboration (YouTube)](https://www.youtube.com/watch?v=sal78ACtGTc)
+- [Microsoft Agent Framework — Group Chat Orchestration](https://learn.microsoft.com/en-us/agent-framework/workflows/orchestrations/group-chat)
 
-## Hands-On Exercises
+## Hands-On Exercise
 
-Head to the [Group Chat exercises](../exercises/06_group_chat.md){:target="_blank"}:
+Head to the [Brainstorm exercise](../exercises/06_brainstorm.md){:target="_blank"} — PM, Designer, and Engineer debate a product idea in rounds.
 
-- **Brainstorm** — PM, Designer, and Engineer debate a product idea in rounds
-- **Maker-Checker** — Code generator + reviewer in a reflection loop
-
-You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).
+You can run exercises from the terminal or use the [Workshop TUI](../workshop-tui.md).

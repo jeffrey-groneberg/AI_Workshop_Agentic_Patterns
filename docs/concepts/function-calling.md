@@ -1,4 +1,4 @@
-# Tools & Function Calling
+# Function Calling
 
 !!! tip "Chapter Slides"
     [:material-file-pdf-box: Download Chapter 2 — Tools & Function Calling (PDF)](../slides/Chapter2_Tools_Function_Calling.pdf){:target="_blank"}
@@ -102,21 +102,7 @@ The model can request multiple tool calls in a single response. For example, it 
 
 ## The Agent Loop
 
-When you combine tool calling with a loop, you get the core **agent loop** — the foundation of every agentic pattern in this workshop:
-
-```mermaid
-graph TD
-    A[Receive user message] --> B[Call LLM with messages + tools]
-    B --> C{finish_reason?}
-    C -->|stop| D[Return final text response]
-    C -->|tool_calls| E[Execute tools]
-    E --> F[Append tool results to messages]
-    F --> B
-```
-
-The loop continues until the model decides it has enough information to respond with text (`finish_reason="stop"`) rather than requesting more tool calls.
-
-This is what [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} (`02_tool_use/02_tool_loop.py`) implements explicitly — and what the shared `Agent` + `run()` function encapsulates for later exercises.
+When you combine tool calling with a loop, you get the core **agent loop** — the foundation of every agentic pattern in this workshop. This is covered in depth in the dedicated [Agent Run Loop](agent-run-loop.md) page.
 
 !!! tip "Ready to practice?"
     Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
@@ -137,9 +123,9 @@ This is what [Exercise 02](../exercises/02_tool_use.md){:target="_blank"} (`02_t
 
 ## Hands-On Exercises
 
-Now try it yourself — head to the [Tool Use exercises](../exercises/02_tool_use.md){:target="_blank"}:
+Now try it yourself:
 
-- **Function Calling** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
-- **Tool Loop** — Build the full agent loop: reason → call tool → observe → repeat
+- [Function Calling exercise](../exercises/02_function_calling.md){:target="_blank"} — Define tools with `pydantic_function_tool()`, make a single-pass tool call
+- [Tool Loop exercise](../exercises/02_tool_loop.md){:target="_blank"} — Build the full agent loop: reason → call tool → observe → repeat
 
-You can run them from the terminal or use the [Workshop TUI](../workshop-tui.md).
+You can run exercises from the terminal or use the [Workshop TUI](../workshop-tui.md).

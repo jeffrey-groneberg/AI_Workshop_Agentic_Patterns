@@ -67,7 +67,7 @@ Agents share a conversation thread and take turns contributing, building on each
 
 **Use when**: Collaborative problem-solving, brainstorming, iterative refinement (maker-checker).
 
-→ [Learn more](../patterns/group-chat.md)
+→ [Learn more: Brainstorm](../patterns/brainstorm.md) · [Maker-Checker](../patterns/maker-checker.md)
 
 ### 4. Handoff
 
