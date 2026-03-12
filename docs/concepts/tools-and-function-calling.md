@@ -1,5 +1,8 @@
 # Tools & Function Calling
 
+!!! tip "Chapter Slides"
+    [:material-file-pdf-box: Download Chapter 2 — Tools & Function Calling (PDF)](../slides/Chapter2_Tools_Function_Calling.pdf){:target="_blank"}
+
 Tools are what transform an LLM from a text generator into an **agent** — the ability to take actions in the real world by calling functions you define.
 
 ## The Concept

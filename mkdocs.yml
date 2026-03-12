@@ -89,6 +89,8 @@ nav:
       - Reliability: production-considerations/reliability.md
       - Human in the Loop: production-considerations/human-in-the-loop.md
       - Choosing a Pattern: production-considerations/choosing-a-pattern.md
+  - Slides:
+      - All Slides: slides/index.md
   - References:
       - References: references.md
   - All Exercises:

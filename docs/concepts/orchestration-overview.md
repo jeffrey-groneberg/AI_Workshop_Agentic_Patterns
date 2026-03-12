@@ -1,5 +1,8 @@
 # Orchestration Overview
 
+!!! tip "Chapter Slides"
+    [:material-file-pdf-box: Chapter 3 — Single Agent (PDF)](../slides/Chapter3_Single_Agent.pdf){:target="_blank"} · [:material-file-pdf-box: Chapter 4 — Multi-Agent (PDF)](../slides/Chapter4_Multi_Agent.pdf){:target="_blank"} · [:material-file-pdf-box: Chapter 5 — Advanced Patterns (PDF)](../slides/Chapter5_Advanced_Patterns.pdf){:target="_blank"}
+
 When a single agent isn't enough, you need **orchestration** — coordinating multiple agents to solve complex problems. This page introduces the complexity spectrum and the five patterns you'll learn.
 
 ## The Complexity Spectrum

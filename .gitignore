@@ -47,3 +47,6 @@ htmlcov/
 # Type checking
 .mypy_cache/
 workshop_debug.log
+
+# Slide sources
+*.pptx

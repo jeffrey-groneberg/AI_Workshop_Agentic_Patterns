@@ -1,5 +1,8 @@
 # LLM Basics
 
+!!! tip "Chapter Slides"
+    [:material-file-pdf-box: Download Chapter 1 — LLM Foundations (PDF)](../slides/Chapter1_LLM_Foundations.pdf){:target="_blank"}
+
 Before building agents, you need to understand the foundation: how Large Language Models (LLMs) process conversations through the Chat Completions API.
 
 ## The Chat Completions API
