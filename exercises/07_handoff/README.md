@@ -83,6 +83,97 @@ sequenceDiagram
 !!! info "Why structured handoff matters"
     Compared to passing raw conversation history, a structured handoff object provides: (1) **Reliable routing** — category is a typed field, not a substring match. (2) **Context compaction** — the specialist gets only relevant info, not the full triage conversation. (3) **Auditability** — the reasoning field documents why the triage decision was made.
 
+## Message Flow: A Practical Example
+
+This example follows a single customer query through the full handoff lifecycle. Unlike group chat (shared list) or concurrent (isolated lists), the handoff pattern creates a **structured boundary** between the triage agent and the specialist — they never share a messages list.
+
+### Step 1: Triage agent receives the query
+
+The triage agent gets a fresh messages list with its system prompt and the customer's raw query:
+
+```python
+# Triage agent's messages (completely self-contained)
+triage_messages = [
+    {
+        "role": "system",
+        "content": "You are a customer support triage agent. Analyze the query and route to billing, technical, or account..."
+    },
+    {
+        "role": "user",
+        "content": "I was charged twice for my subscription last month and I want a refund"
+    }
+]
+```
+
+### Step 2: Triage agent returns structured output
+
+Instead of a free-text reply, the triage agent returns a **Pydantic-validated structured object** via `client.chat.completions.parse(response_format=TriageDecision)`:
+
+```python
+# TriageDecision — the LLM's structured output (not a chat message!)
+TriageDecision(
+    category="billing",
+    priority="high",
+    reasoning="Customer reports duplicate charge, requesting refund — route to billing specialist",
+    extracted_info={
+        "issue_type": "duplicate_charge",
+        "timeframe": "last month",
+        "desired_resolution": "refund"
+    }
+)
+```
+
+### Step 3: Structured context is packaged for handoff
+
+The orchestrator converts the triage decision into a `HandoffContext` dataclass — a clean boundary between agents:
+
+```python
+# HandoffContext — the only data that crosses the agent boundary
+HandoffContext(
+    customer_query="I was charged twice for my subscription last month and I want a refund",
+    category="billing",
+    priority="high",
+    extracted_info={
+        "issue_type": "duplicate_charge",
+        "timeframe": "last month",
+        "desired_resolution": "refund"
+    }
+)
+```
+
+### Step 4: Specialist gets a fresh messages list
+
+The specialist does NOT inherit any messages from the triage agent. Instead, it receives a brand-new list built from the handoff context:
+
+```python
+# Billing specialist's messages — completely fresh, no triage history
+specialist_messages = [
+    {
+        "role": "user",
+        "content": (
+            "Customer query: I was charged twice for my subscription last month and I want a refund\n"
+            "Priority: high\n"
+            "Extracted details: {\"issue_type\": \"duplicate_charge\", "
+            "\"timeframe\": \"last month\", \"desired_resolution\": \"refund\"}\n\n"
+            "Please resolve this customer's issue."
+        )
+    }
+]
+```
+
+The specialist then runs its own tool loop (e.g., calling `lookup_invoice`) with this context until it reaches a resolution.
+
+### What crosses the boundary
+
+| Data | Passed to specialist? | How? |
+|---|---|---|
+| Customer's original query | Yes | Via `HandoffContext.customer_query` |
+| Triage category + priority | Yes | Via `HandoffContext.category` / `.priority` |
+| Extracted details (issue type, timeframe, etc.) | Yes | Via `HandoffContext.extracted_info` dict |
+| Triage agent's system prompt | **No** | Specialist has its own |
+| Triage agent's internal reasoning | **No** | Stays in `TriageDecision.reasoning` for logging only |
+| Triage agent's raw messages list | **No** | Specialist starts fresh |
+
 ## Files
 
 1. **`01_support_triage.py`** — Triage agent routes to billing, technical, or account specialists

@@ -138,6 +138,147 @@ sequenceDiagram
 !!! warning "Context window growth"
     In both variants, the shared messages list grows with every turn. With 3 rounds × 3 agents = 9 turns in brainstorm, or up to 8 turns in maker-checker, the context can become substantial. For production systems, consider summarizing or truncating older messages.
 
+## Message Flow: Practical Examples
+
+These examples show exactly how the **shared `messages` list** grows turn by turn. Unlike the concurrent pattern (where each agent has its own list), here **all agents read and write to the same list**.
+
+### Brainstorm: Shared messages growing round by round
+
+**Start — the shared list has only the user prompt:**
+
+```python
+# Turn 0 — initial state
+shared_messages = [
+    {
+        "role": "user",
+        "content": "Brainstorm session topic: A mobile app that helps people reduce food waste at home..."
+    }
+]
+```
+
+**Turn 1 — Product Manager speaks.** The orchestrator prepends PM's system prompt before calling the LLM:
+
+```python
+# What the LLM receives for the Product Manager:
+api_call_messages = [
+    {"role": "system",    "content": "You are an experienced Product Manager..."},
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."}  # from shared_messages
+]
+
+# After PM responds → reply is appended to the SHARED list:
+shared_messages = [
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."},
+    {"role": "assistant", "content": "[Product Manager]: The market for food waste apps is growing..."}
+]
+```
+
+**Turn 2 — Designer speaks.** The Designer sees PM's contribution because it's in the shared list:
+
+```python
+# What the LLM receives for the Designer:
+api_call_messages = [
+    {"role": "system",    "content": "You are a creative UX Designer..."},
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."},       # shared
+    {"role": "assistant", "content": "[Product Manager]: The market for food waste..."}   # shared
+]
+
+# After Designer responds → appended to shared list:
+shared_messages = [
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."},
+    {"role": "assistant", "content": "[Product Manager]: The market for food waste..."},
+    {"role": "assistant", "content": "[Designer]: We should focus on a camera-based UI..."}
+]
+```
+
+**Turn 3 — Engineer speaks.** The Engineer sees both PM and Designer contributions:
+
+```python
+# What the LLM receives for the Engineer:
+api_call_messages = [
+    {"role": "system",    "content": "You are a pragmatic Senior Engineer..."},
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."},       # shared
+    {"role": "assistant", "content": "[Product Manager]: The market for food waste..."},  # shared
+    {"role": "assistant", "content": "[Designer]: We should focus on a camera-based..."} # shared
+]
+
+# After Engineer responds → appended to shared list:
+shared_messages = [
+    {"role": "user",      "content": "Brainstorm session topic: A mobile app..."},
+    {"role": "assistant", "content": "[Product Manager]: The market for food waste..."},
+    {"role": "assistant", "content": "[Designer]: We should focus on a camera-based..."},
+    {"role": "assistant", "content": "[Engineer]: Image recognition for food is feasible with..."}
+]
+```
+
+**Rounds 2-3 continue the same way.** By the end of 3 rounds × 3 agents = 9 turns, `shared_messages` has **10 entries** (1 user + 9 assistant). Every agent in later turns sees the full accumulated history.
+
+| After turn | `shared_messages` length | Agents visible in history |
+|---|---|---|
+| Start | 1 (user only) | — |
+| Turn 1 (PM) | 2 | PM |
+| Turn 2 (Designer) | 3 | PM, Designer |
+| Turn 3 (Engineer) | 4 | PM, Designer, Engineer |
+| Turn 4 (PM, round 2) | 5 | All — PM sees Designer + Engineer's ideas |
+| ... | ... | ... |
+| Turn 9 (Engineer, round 3) | 10 | Complete group conversation |
+
+### Maker-Checker: Shared messages with a termination condition
+
+**Start — the coding task:**
+
+```python
+# Initial state
+shared_messages = [
+    {"role": "user", "content": "Write a Python function `merge_sorted_lists`..."}
+]
+```
+
+**Generator produces initial code → appended to shared list:**
+
+```python
+shared_messages = [
+    {"role": "user",      "content": "Write a Python function `merge_sorted_lists`..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(...):\n    ...```"}
+]
+```
+
+**Reviewer evaluates:** The Reviewer sees the shared list plus an extra instruction. If the code has issues:
+
+```python
+# Reviewer adds its critique to the shared list:
+shared_messages = [
+    {"role": "user",      "content": "Write a Python function `merge_sorted_lists`..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(...):\n    ...```"},
+    {"role": "assistant", "content": "[Reviewer]: Missing type hints and no edge case handling for empty lists..."}
+]
+```
+
+**Generator revises** — it sees the original task, its first attempt, AND the feedback:
+
+```python
+shared_messages = [
+    {"role": "user",      "content": "Write a Python function `merge_sorted_lists`..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(...):\n    ...```"},
+    {"role": "assistant", "content": "[Reviewer]: Missing type hints and no edge case handling..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(list1: list[int], ...):\n    ...```"}
+]
+```
+
+**Reviewer approves** — the loop terminates:
+
+```python
+shared_messages = [
+    {"role": "user",      "content": "Write a Python function `merge_sorted_lists`..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(...):\n    ...```"},
+    {"role": "assistant", "content": "[Reviewer]: Missing type hints and no edge case handling..."},
+    {"role": "assistant", "content": "[Generator]: ```python\ndef merge_sorted_lists(list1: list[int], ...):\n    ...```"},
+    {"role": "assistant", "content": "[Reviewer]: APPROVED - code meets all criteria"}
+]
+# ↑ Loop ends because review.strip().upper().startswith("APPROVED")
+```
+
+**Termination:** The loop checks `review.strip().upper().startswith("APPROVED")`. If not approved after `MAX_ITERATIONS=4`, the loop ends with the last generated code (not approved).
+
 ## Files (in order)
 
 1. **`01_brainstorm.py`** — Three agents debate a product idea in a shared thread

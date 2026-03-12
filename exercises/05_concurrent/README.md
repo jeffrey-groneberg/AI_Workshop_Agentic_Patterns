@@ -94,6 +94,102 @@ sequenceDiagram
 !!! tip "When to use this pattern"
     The concurrent pattern works best when sub-tasks are **independent** — no agent needs another agent's output to do its work. If agents have dependencies, use the sequential pattern instead. You can also combine both: parallel fan-out followed by sequential refinement.
 
+## Message Flow: A Practical Example
+
+This example shows exactly what each agent's `messages` list looks like at runtime. Notice that **every agent gets its own isolated list** — there is no shared state.
+
+### Step 1 — Fan-Out: Each analyst gets an independent messages list
+
+All three analysts receive the same user query, but in completely separate `messages` lists. They run in parallel threads and cannot see each other.
+
+```python
+# Fundamental Analyst's messages (isolated)
+fundamental_messages = [
+    {"role": "user", "content": "Analyze NVIDIA Corp. (NVDA) stock."}
+]
+
+# Technical Analyst's messages (isolated — separate list)
+technical_messages = [
+    {"role": "user", "content": "Analyze NVIDIA Corp. (NVDA) stock."}
+]
+
+# Sentiment Analyst's messages (isolated — separate list)
+sentiment_messages = [
+    {"role": "user", "content": "Analyze NVIDIA Corp. (NVDA) stock."}
+]
+```
+
+Each analyst also has its own system prompt (set via the `Agent` abstraction), so the actual API call for the Fundamental Analyst looks like:
+
+```python
+# What the LLM actually receives for the Fundamental Analyst:
+[
+    {"role": "system", "content": "You are a fundamental analyst. Analyze the given stock..."},
+    {"role": "user",   "content": "Analyze NVIDIA Corp. (NVDA) stock."}
+]
+```
+
+The other two analysts receive the same structure but with their own system prompts (technical analysis, sentiment analysis). **No agent sees any other agent's prompt or output.**
+
+### Step 2 — Each analyst produces its output independently
+
+After the LLM responds, each analyst's `messages` list grows — but only its own:
+
+```python
+# Fundamental Analyst — after LLM responds
+fundamental_messages = [
+    {"role": "user",      "content": "Analyze NVIDIA Corp. (NVDA) stock."},
+    {"role": "assistant", "content": "NVIDIA shows strong revenue growth driven by AI/datacenter..."}
+]
+
+# Technical Analyst — after LLM responds (separate list, separate output)
+technical_messages = [
+    {"role": "user",      "content": "Analyze NVIDIA Corp. (NVDA) stock."},
+    {"role": "assistant", "content": "NVDA is trading above its 50-day moving average..."}
+]
+
+# Sentiment Analyst — after LLM responds (separate list, separate output)
+sentiment_messages = [
+    {"role": "user",      "content": "Analyze NVIDIA Corp. (NVDA) stock."},
+    {"role": "assistant", "content": "Market sentiment for NVIDIA is overwhelmingly positive..."}
+]
+```
+
+The orchestrator collects just the final text output from each analyst — the `messages` lists themselves are discarded.
+
+### Step 3 — Fan-In: Aggregator receives all outputs in a fresh list
+
+The Aggregator gets a **brand new `messages` list** containing all three outputs combined with `=== headers ===`:
+
+```python
+# Aggregator's messages — completely fresh, no analyst history
+aggregator_messages = [
+    {
+        "role": "user",
+        "content": (
+            "Synthesize these independent analyses of NVIDIA Corp. (NVDA):\n\n"
+            "=== Fundamental Analyst ===\n"
+            "NVIDIA shows strong revenue growth driven by AI/datacenter...\n\n"
+            "=== Technical Analyst ===\n"
+            "NVDA is trading above its 50-day moving average...\n\n"
+            "=== Sentiment Analyst ===\n"
+            "Market sentiment for NVIDIA is overwhelmingly positive..."
+        ),
+    }
+]
+```
+
+The Aggregator has **no knowledge** of how the analysts worked, what tools they used, or what their system prompts were. It sees only the combined text outputs.
+
+### Summary: Four agents, four independent message lists
+
+| Agent | Messages list | Sees other agents? | Shared state? |
+|---|---|---|---|
+| Fundamental Analyst | Own isolated list | No | None |
+| Technical Analyst | Own isolated list | No | None |
+| Sentiment Analyst | Own isolated list | No | None |
+| Aggregator | Own fresh list (with combined outputs) | Only their text outputs | None |
+
 ## Files
 
 1. **`01_stock_analysis.py`** — Three parallel analyst agents + an aggregator for stock analysis
