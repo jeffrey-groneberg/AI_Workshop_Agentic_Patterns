@@ -113,13 +113,8 @@ graph TD
 [INFO] [Aggregator] Investment Report: ...
 ```
 
-## Hands-On Exercise
-
-**`exercises/05_concurrent/01_stock_analysis.py`** — Build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
-
-```bash
-python exercises/05_concurrent/01_stock_analysis.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -133,3 +128,11 @@ python exercises/05_concurrent/01_stock_analysis.py
 
 - [MS Learn — Concurrent Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [Python `concurrent.futures` Documentation](https://docs.python.org/3/library/concurrent.futures.html)
+
+## Hands-On Exercise
+
+**`exercises/05_concurrent/01_stock_analysis.py`** — Build a fan-out/fan-in stock analysis system with 3 parallel analysts and an aggregator.
+
+```bash
+python exercises/05_concurrent/01_stock_analysis.py
+```

@@ -113,13 +113,8 @@ graph TD
        can see the duplicate charge. Processing your refund now...
 ```
 
-## Hands-On Exercise
-
-**`exercises/07_handoff/01_support_triage.py`** — Build a support triage system that classifies queries and routes to billing, technical, or account specialists.
-
-```bash
-python exercises/07_handoff/01_support_triage.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -133,3 +128,11 @@ python exercises/07_handoff/01_support_triage.py
 
 - [MS Learn — Handoff Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [Anthropic — "Building Effective Agents"](https://www.anthropic.com/engineering/building-effective-agents)
+
+## Hands-On Exercise
+
+**`exercises/07_handoff/01_support_triage.py`** — Build a support triage system that classifies queries and routes to billing, technical, or account specialists.
+
+```bash
+python exercises/07_handoff/01_support_triage.py
+```

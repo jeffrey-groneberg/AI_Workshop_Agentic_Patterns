@@ -99,13 +99,8 @@ class IncidentPlan(BaseModel):
     tasks: list[Task]
 ```
 
-## Hands-On Exercise
-
-- **`exercises/01_llm_basics/03_structured_outputs.py`** — Extract structured analysis from product reviews
-
-```bash
-python exercises/01_llm_basics/03_structured_outputs.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -119,3 +114,11 @@ python exercises/01_llm_basics/03_structured_outputs.py
 
 - [OpenAI Structured Outputs Guide](https://platform.openai.com/docs/guides/structured-outputs)
 - [Pydantic Documentation](https://docs.pydantic.dev/latest/)
+
+## Hands-On Exercise
+
+- **`exercises/01_llm_basics/03_structured_outputs.py`** — Extract structured analysis from product reviews
+
+```bash
+python exercises/01_llm_basics/03_structured_outputs.py
+```

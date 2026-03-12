@@ -82,13 +82,8 @@ And a `run()` function that implements the loop. No inheritance, no metaclasses,
 
 By building the agent yourself, you understand what every framework does internally.
 
-## Hands-On Exercise
-
-- **`exercises/03_single_agent/01_customer_support_agent.py`** — A customer support agent with order lookup, FAQ search, and refund processing tools
-
-```bash
-python exercises/03_single_agent/01_customer_support_agent.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -105,3 +100,11 @@ python exercises/03_single_agent/01_customer_support_agent.py
 - [Anthropic — "Building Effective Agents"](https://www.anthropic.com/engineering/building-effective-agents)
 - [MS Learn — AI Agent Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2023)](https://arxiv.org/abs/2210.03629)
+
+## Hands-On Exercise
+
+- **`exercises/03_single_agent/01_customer_support_agent.py`** — A customer support agent with order lookup, FAQ search, and refund processing tools
+
+```bash
+python exercises/03_single_agent/01_customer_support_agent.py
+```

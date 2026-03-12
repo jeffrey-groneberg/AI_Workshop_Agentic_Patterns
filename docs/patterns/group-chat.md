@@ -175,15 +175,8 @@ graph LR
        APPROVED — Clean, well-documented implementation.
 ```
 
-## Hands-On Exercises
-
-- **`exercises/06_group_chat/01_brainstorm.py`** — PM, Designer, and Engineer debate a product idea in rounds
-- **`exercises/06_group_chat/02_maker_checker.py`** — Code generator + reviewer in a reflection loop
-
-```bash
-python exercises/06_group_chat/01_brainstorm.py
-python exercises/06_group_chat/02_maker_checker.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -199,3 +192,13 @@ python exercises/06_group_chat/02_maker_checker.py
 - [Anthropic — Evaluator-Optimizer Pattern](https://www.anthropic.com/engineering/building-effective-agents)
 - [Andrew Ng — Reflection Pattern (YouTube)](https://www.youtube.com/watch?v=sal78ACtGTc)
 - [Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al., 2023)](https://arxiv.org/abs/2303.11366)
+
+## Hands-On Exercises
+
+- **`exercises/06_group_chat/01_brainstorm.py`** — PM, Designer, and Engineer debate a product idea in rounds
+- **`exercises/06_group_chat/02_maker_checker.py`** — Code generator + reviewer in a reflection loop
+
+```bash
+python exercises/06_group_chat/01_brainstorm.py
+python exercises/06_group_chat/02_maker_checker.py
+```

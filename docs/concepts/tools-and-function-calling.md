@@ -115,17 +115,8 @@ The loop continues until the model decides it has enough information to respond 
 
 This is what Exercise `02_tool_use/02_tool_loop.py` implements explicitly — and what the shared `Agent` + `run()` function encapsulates for later exercises.
 
-## Hands-On Exercises
-
-Now try it yourself:
-
-- **`exercises/02_tool_use/01_function_calling.py`** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
-- **`exercises/02_tool_use/02_tool_loop.py`** — Build the full agent loop: reason → call tool → observe → repeat
-
-```bash
-python exercises/02_tool_use/01_function_calling.py
-python exercises/02_tool_use/02_tool_loop.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -140,3 +131,15 @@ python exercises/02_tool_use/02_tool_loop.py
 - [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
 - [OpenAI Tools API Reference](https://platform.openai.com/docs/api-reference/chat/create#chat-create-tools)
 - [MS Learn — Tool Use in AI Agents](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
+
+## Hands-On Exercises
+
+Now try it yourself:
+
+- **`exercises/02_tool_use/01_function_calling.py`** — Define tools with `pydantic_function_tool()`, make a single-pass tool call
+- **`exercises/02_tool_use/02_tool_loop.py`** — Build the full agent loop: reason → call tool → observe → repeat
+
+```bash
+python exercises/02_tool_use/01_function_calling.py
+python exercises/02_tool_use/02_tool_loop.py
+```

@@ -190,13 +190,8 @@ graph TD
        Prevention: ...
 ```
 
-## Hands-On Exercise
-
-**`exercises/08_magentic/01_incident_response.py`** — Build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
-
-```bash
-python exercises/08_magentic/01_incident_response.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -210,3 +205,11 @@ python exercises/08_magentic/01_incident_response.py
 
 - [MS Learn — Magentic Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [CAMEL: Communicative Agents for "Mind" Exploration (Li et al., 2023)](https://arxiv.org/abs/2303.17760)
+
+## Hands-On Exercise
+
+**`exercises/08_magentic/01_incident_response.py`** — Build a manager that coordinates diagnostic, infrastructure, and communication workers to respond to a production incident.
+
+```bash
+python exercises/08_magentic/01_incident_response.py
+```

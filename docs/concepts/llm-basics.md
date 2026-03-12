@@ -100,19 +100,8 @@ System prompts are the primary way to define an agent's personality, expertise, 
 
 This is the foundation of **agent identity** — when we build multi-agent systems later, each agent gets a different system prompt that defines its role.
 
-## Hands-On Exercises
-
-Now try it yourself:
-
-- **`exercises/01_llm_basics/01_chat_completion.py`** — Build a travel assistant with single-turn and multi-turn conversations
-- **`exercises/01_llm_basics/02_system_prompts.py`** — See how the same query gets different responses with different personas
-- **`exercises/01_llm_basics/03_structured_outputs.py`** — Get structured JSON responses using Pydantic models
-
-```bash
-python exercises/01_llm_basics/01_chat_completion.py
-python exercises/01_llm_basics/02_system_prompts.py
-python exercises/01_llm_basics/03_structured_outputs.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -128,3 +117,17 @@ python exercises/01_llm_basics/03_structured_outputs.py
 - [OpenAI API Reference](https://platform.openai.com/docs/api-reference/chat)
 - [Andrej Karpathy — "Intro to Large Language Models" (YouTube)](https://www.youtube.com/watch?v=zjkBMFhNj_g)
 - [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering)
+
+## Hands-On Exercises
+
+Now try it yourself:
+
+- **`exercises/01_llm_basics/01_chat_completion.py`** — Build a travel assistant with single-turn and multi-turn conversations
+- **`exercises/01_llm_basics/02_system_prompts.py`** — See how the same query gets different responses with different personas
+- **`exercises/01_llm_basics/03_structured_outputs.py`** — Get structured JSON responses using Pydantic models
+
+```bash
+python exercises/01_llm_basics/01_chat_completion.py
+python exercises/01_llm_basics/02_system_prompts.py
+python exercises/01_llm_basics/03_structured_outputs.py
+```

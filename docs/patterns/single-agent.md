@@ -91,13 +91,8 @@ A customer support agent that handles queries about orders, returns, and general
 
 Notice the loop iterations — the agent reasons about what to do, calls tools, observes results, and decides whether it has enough information to respond.
 
-## Hands-On Exercise
-
-**`exercises/03_single_agent/01_customer_support_agent.py`** — Build a customer support agent with order lookup, FAQ search, and refund processing.
-
-```bash
-python exercises/03_single_agent/01_customer_support_agent.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -111,3 +106,11 @@ python exercises/03_single_agent/01_customer_support_agent.py
 
 - [MS Learn — Single Agent Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [Anthropic — "Building Effective Agents"](https://www.anthropic.com/engineering/building-effective-agents)
+
+## Hands-On Exercise
+
+**`exercises/03_single_agent/01_customer_support_agent.py`** — Build a customer support agent with order lookup, FAQ search, and refund processing.
+
+```bash
+python exercises/03_single_agent/01_customer_support_agent.py
+```

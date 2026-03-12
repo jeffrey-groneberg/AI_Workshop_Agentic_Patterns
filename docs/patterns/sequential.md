@@ -120,13 +120,8 @@ A 3-stage content pipeline where:
 [INFO] [Editor Agent] [Final polished article...]
 ```
 
-## Hands-On Exercise
-
-**`exercises/04_sequential/01_content_pipeline.py`** — Build a research → draft → edit pipeline with explicit context passing between stages.
-
-```bash
-python exercises/04_sequential/01_content_pipeline.py
-```
+!!! tip "Ready to practice?"
+    Continue with the hands-on exercise in the sidebar (✏️) to apply what you've learned.
 
 ## Key Takeaways
 
@@ -140,3 +135,11 @@ python exercises/04_sequential/01_content_pipeline.py
 
 - [MS Learn — Sequential Pattern](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [Andrew Ng — Agentic Design Patterns (YouTube)](https://www.youtube.com/watch?v=sal78ACtGTc)
+
+## Hands-On Exercise
+
+**`exercises/04_sequential/01_content_pipeline.py`** — Build a research → draft → edit pipeline with explicit context passing between stages.
+
+```bash
+python exercises/04_sequential/01_content_pipeline.py
+```
