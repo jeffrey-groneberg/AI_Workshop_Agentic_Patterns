@@ -25,7 +25,12 @@ from pydantic import BaseModel, Field
 
 from exercises.commons.llm_client import get_client, get_model
 from exercises.commons.utils import setup_logging, log_stage
-from exercises.02_tool_use.tools import get_weather, convert_temperature
+
+# Cannot use `from exercises.02_tool_use.tools` — folder starts with a digit.
+import importlib
+_tools = importlib.import_module("exercises.02_tool_use.tools")
+get_weather = _tools.get_weather
+convert_temperature = _tools.convert_temperature
 
 logger = logging.getLogger(__name__)
 

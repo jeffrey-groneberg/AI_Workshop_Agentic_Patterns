@@ -28,7 +28,12 @@ from pydantic import BaseModel, Field
 
 from exercises.commons.llm_client import get_client, get_model
 from exercises.commons.utils import setup_logging, log_stage
-from exercises.02_tool_use.tools import search_database, get_stock_price, calculate
+
+import importlib
+_tools = importlib.import_module("exercises.02_tool_use.tools")
+search_database = _tools.search_database
+get_stock_price = _tools.get_stock_price
+calculate = _tools.calculate
 
 logger = logging.getLogger(__name__)
 

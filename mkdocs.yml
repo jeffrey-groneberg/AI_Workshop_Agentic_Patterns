@@ -65,6 +65,7 @@ nav:
           - LLM Basics: exercises/01_llm_basics.md
   - "2 - Tools & Function Calling":
       - Tools & Function Calling: concepts/tools-and-function-calling.md
+      - The Agent Run Loop: concepts/agent-run-loop.md
       - "✏️ Exercises":
           - Tool Use: exercises/02_tool_use.md
   - "3 - Agent Patterns":

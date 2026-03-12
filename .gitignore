@@ -1,7 +1,49 @@
+# Environment & secrets
 .env
-.venv/
+.env.*
+!.env.example
+
+# Python
 __pycache__/
-*.pyc
-site/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
+Thumbs.db
+
+# MKDocs build output
+site/
+
+# Node (mkdocs plugins)
 node_modules/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/
+workshop_debug.log

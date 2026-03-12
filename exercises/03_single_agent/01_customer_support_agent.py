@@ -27,7 +27,12 @@ from pydantic import BaseModel, Field
 from exercises.commons.llm_client import get_client, get_model
 from exercises.commons.agent import Agent, run
 from exercises.commons.utils import setup_logging, log_stage
-from exercises.02_tool_use.tools import lookup_order, search_faq, process_refund
+
+import importlib
+_tools = importlib.import_module("exercises.02_tool_use.tools")
+lookup_order = _tools.lookup_order
+search_faq = _tools.search_faq
+process_refund = _tools.process_refund
 
 logger = logging.getLogger(__name__)
 

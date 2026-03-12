@@ -31,7 +31,12 @@ from pydantic import BaseModel, Field
 from exercises.commons.llm_client import get_client, get_model
 from exercises.commons.agent import Agent, run
 from exercises.commons.utils import setup_logging, log_stage, log_handoff, log_context_pass
-from exercises.02_tool_use.tools import lookup_order, process_refund, search_faq
+
+import importlib
+_tools = importlib.import_module("exercises.02_tool_use.tools")
+lookup_order = _tools.lookup_order
+process_refund = _tools.process_refund
+search_faq = _tools.search_faq
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +56,19 @@ class HandoffContext:
     extracted_info: dict  # Any relevant details (order IDs, error codes, etc.)
 
 
+def _details_to_dict(details: list) -> dict:
+    """Convert list of ExtractedDetail to a plain dict."""
+    return {d.key: d.value for d in details}
+
+
 # ── Triage output schema ───────────────────────────────────────────────────
+
+
+class ExtractedDetail(BaseModel):
+    """A single key-value detail extracted from the query."""
+
+    key: str = Field(description="Detail name, e.g. 'order_id', 'error_code'")
+    value: str = Field(description="Detail value")
 
 
 class TriageDecision(BaseModel):
@@ -60,8 +77,8 @@ class TriageDecision(BaseModel):
     category: str = Field(description="Category: 'billing', 'technical', or 'account'")
     priority: str = Field(description="Priority: 'low', 'medium', or 'high'")
     reasoning: str = Field(description="Brief explanation of the routing decision")
-    extracted_info: dict = Field(
-        default_factory=dict,
+    extracted_info: list[ExtractedDetail] = Field(
+        default_factory=list,
         description="Any relevant details extracted from the query (order IDs, error codes, etc.)",
     )
 
@@ -185,7 +202,7 @@ def triage_query(client, model: str, query: str) -> HandoffContext:
         customer_query=query,
         category=decision.category,
         priority=decision.priority,
-        extracted_info=decision.extracted_info,
+        extracted_info=_details_to_dict(decision.extracted_info),
     )
 
 

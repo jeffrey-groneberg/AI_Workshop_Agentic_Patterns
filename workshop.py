@@ -4,11 +4,20 @@
 Launch with:  python workshop.py
 """
 
+import logging
 import subprocess
 import sys
 from pathlib import Path
 
-from textual import on, work
+# Log to a file so it doesn't interfere with the TUI
+logging.basicConfig(
+    filename="workshop_debug.log",
+    level=logging.DEBUG,
+    format="%(asctime)s [%(threadName)s] %(message)s",
+    filemode="w",
+)
+
+from textual import work
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical, VerticalScroll
@@ -194,15 +203,15 @@ class WorkshopApp(App):
 
     TITLE = "🤖 Agentic AI Workshop"
     BINDINGS = [
-        Binding("enter", "run_exercise", "Run Exercise", show=True),
-        Binding("r", "run_exercise", "Run", show=False),
+        Binding("f5", "run_exercise", "Run (F5)", show=True),
         Binding("q", "quit", "Quit", show=True),
     ]
 
     def __init__(self):
         super().__init__()
         self._selected_idx: int | None = None
-        self._running = False
+        self._exercise_running = False
+        logging.debug("__init__: _exercise_running = %s", self._exercise_running)
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -213,7 +222,7 @@ class WorkshopApp(App):
                 with VerticalScroll(id="detail"):
                     yield Markdown("Select an exercise from the sidebar to begin.", id="readme")
                 with Horizontal(id="bottom-bar"):
-                    yield Static("[bold]Enter[/] to run", id="run-hint", markup=True)
+                    yield Static("[bold]Enter[/] to run · [bold]F5[/] re-run", id="run-hint", markup=True)
                     yield StatusBadge(id="status-badge")
         yield Footer()
 
@@ -222,19 +231,26 @@ class WorkshopApp(App):
             return int(item.id.split("-")[1])
         return None
 
-    @on(ListView.Selected)
-    def on_list_selected(self, event: ListView.Selected) -> None:
+    def on_list_view_selected(self, event: ListView.Selected) -> None:
+        logging.debug("on_list_view_selected ENTER: item=%s, _exercise_running=%s", event.item.id if event.item else None, self._exercise_running)
         idx = self._get_exercise_index(event.item)
         if idx is None:
+            logging.debug("on_list_view_selected: idx is None (chapter header)")
+            self.notify("Selected a chapter header (no exercise)", severity="warning")
             return
         self._selected_idx = idx
-        ch_title, folder, file, label = FLAT[idx]
-        readme_md = _read_readme(folder)
-        self.query_one("#readme", Markdown).update(readme_md)
-        self.query_one(StatusBadge).show_for(idx)
+        _, _, _, label = FLAT[idx]
+        logging.debug("on_list_view_selected: idx=%d, label=%s, _exercise_running=%s", idx, label, self._exercise_running)
+        self.notify(f"Selected: {label}", severity="information")
+        if not self._exercise_running:
+            logging.debug("on_list_view_selected: calling _run_exercise(%d)", idx)
+            self._run_exercise(idx)
+        else:
+            logging.debug("on_list_view_selected: BLOCKED — _exercise_running is True")
+            self.notify("An exercise is already running…", severity="warning")
 
-    @on(ListView.Highlighted)
-    def on_list_highlighted(self, event: ListView.Highlighted) -> None:
+    def on_list_view_highlighted(self, event: ListView.Highlighted) -> None:
+        logging.debug("on_list_view_highlighted: item=%s, _exercise_running=%s", event.item.id if event.item else None, self._exercise_running)
         if event.item is None:
             return
         idx = self._get_exercise_index(event.item)
@@ -247,17 +263,21 @@ class WorkshopApp(App):
         self.query_one(StatusBadge).show_for(idx)
 
     def action_run_exercise(self) -> None:
-        if self._selected_idx is None or self._running:
+        logging.debug("action_run_exercise: _selected_idx=%s, _exercise_running=%s", self._selected_idx, self._exercise_running)
+        if self._selected_idx is None or self._exercise_running:
             return
         self._run_exercise(self._selected_idx)
 
     @work(thread=True)
     def _run_exercise(self, idx: int) -> None:
-        self._running = True
+        logging.debug("_run_exercise ENTER: idx=%d, _exercise_running was %s, setting to True", idx, self._exercise_running)
+        self._exercise_running = True
         _, folder, file, label = FLAT[idx]
         script = EXERCISES_DIR / folder / file
+        logging.debug("_run_exercise: script=%s, exists=%s", script, script.exists())
         badge = self.query_one(StatusBadge)
 
+        self.call_from_thread(self.notify, f"Running: {label}…", severity="information")
         self.call_from_thread(badge.set_status, idx, "running")
         self.call_from_thread(badge.show_for, idx)
 
@@ -267,6 +287,11 @@ class WorkshopApp(App):
         )
 
         try:
+            self.call_from_thread(
+                self.notify,
+                f"Launching: {sys.executable} {script.relative_to(ROOT)}",
+                severity="information",
+            )
             result = subprocess.run(
                 [sys.executable, str(script)],
                 cwd=str(ROOT),
@@ -277,12 +302,14 @@ class WorkshopApp(App):
 
             if result.returncode == 0:
                 self.call_from_thread(badge.set_status, idx, "success")
+                self.call_from_thread(self.notify, f"✔ {label} passed", severity="information")
                 output_md = (
                     f"## ✅ {label} — Passed\n\n"
-                    f"```\n{result.stdout[-3000:] if result.stdout else '(no output)'}\n```"
+                    f"```\n{result.stdout[-8000:] if result.stdout else '(no output)'}\n```"
                 )
             else:
                 self.call_from_thread(badge.set_status, idx, "failed")
+                self.call_from_thread(self.notify, f"✘ {label} failed (exit {result.returncode})", severity="error")
                 stderr = result.stderr[-2000:] if result.stderr else ""
                 stdout = result.stdout[-1000:] if result.stdout else ""
                 output_md = (
@@ -292,14 +319,28 @@ class WorkshopApp(App):
                 )
         except subprocess.TimeoutExpired:
             self.call_from_thread(badge.set_status, idx, "failed")
+            self.call_from_thread(self.notify, f"⏰ {label} timed out", severity="error")
             output_md = f"## ⏰ {label} — Timed out after 120s"
         except Exception as e:
+            import traceback
+            tb = traceback.format_exc()
             self.call_from_thread(badge.set_status, idx, "failed")
-            output_md = f"## 💥 {label} — Error\n\n```\n{e}\n```"
+            self.call_from_thread(
+                self.notify,
+                f"💥 {type(e).__name__}: {e}",
+                severity="error",
+            )
+            output_md = (
+                f"## 💥 {label} — {type(e).__name__}\n\n"
+                f"```\n{tb}\n```"
+            )
+        finally:
+            logging.debug("_run_exercise FINALLY: setting _exercise_running = False")
+            self._exercise_running = False
 
+        logging.debug("_run_exercise: updating UI with results")
         self.call_from_thread(badge.show_for, idx)
         self.call_from_thread(self.query_one("#readme", Markdown).update, output_md)
-        self._running = False
 
 
 if __name__ == "__main__":
