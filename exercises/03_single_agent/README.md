@@ -120,4 +120,4 @@ A multi-turn support conversation showing the agent selecting appropriate tools,
 
 ## Next
 
-→ [Exercise 04: Sequential Pattern](04_sequential.md)
+→ Next: [Exercise 04: Sequential Pattern](../04_sequential/)

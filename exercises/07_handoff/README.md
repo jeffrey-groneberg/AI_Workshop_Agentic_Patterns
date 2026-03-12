@@ -218,4 +218,4 @@ Logging showing the triage classification, handoff decision with reasoning, stru
 
 ## Next
 
-→ [Exercise 08: Magentic Pattern](08_magentic.md)
+→ Next: [Exercise 08: Magentic Pattern](../08_magentic/)

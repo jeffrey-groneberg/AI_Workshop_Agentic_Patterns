@@ -193,4 +193,4 @@ Logging showing the task ledger being built, tasks assigned to workers, worker r
 
 ## Next
 
-→ Return to the [documentation site](../production-considerations/index.md) to review implementation considerations.
+→ Workshop complete! Run `mkdocs serve` to browse the full documentation site.

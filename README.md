@@ -1,5 +1,7 @@
 # Agentic AI Design Patterns Workshop
 
+> **Disclaimer:** This is **not** an official Microsoft product, does not represent official Microsoft learning materials, product documentation, or official statements by Microsoft Corporation. The content, opinions, and recommendations presented herein are the authors' own, provided solely for educational purposes, and should not be construed as official Microsoft guidance or endorsement.
+
 A hands-on, multi-part workshop teaching **agentic AI design patterns** using pure Python and the OpenAI SDK — no AI frameworks required.
 
 ## What You'll Learn
@@ -11,7 +13,7 @@ This workshop progresses from LLM fundamentals to advanced multi-agent orchestra
 3. **Single Agent** — A complete agent with multiple tools
 4. **Sequential Pattern** — Pipeline of agents processing in stages
 5. **Concurrent Pattern** — Fan-out/fan-in with parallel agent execution
-6. **Group Chat Pattern** — Shared conversation with multiple agents + maker-checker
+6. **Group Chat Pattern** — Round-robin brainstorm + maker-checker (reflection)
 7. **Handoff Pattern** — Dynamic routing between specialist agents
 8. **Magentic Pattern** — Adaptive planning with a task ledger
 
@@ -20,7 +22,7 @@ This workshop progresses from LLM fundamentals to advanced multi-agent orchestra
 - **Python 3.11+** (no AI frameworks — just stdlib + OpenAI SDK)
 - **OpenAI SDK v2.x** — Chat Completions API with modern patterns
 - **Pydantic** — Structured outputs and tool definitions
-- **MKDocs Material** — Documentation site
+- **MKDocs Material** — Documentation site with interactive message flow visualizations
 
 ## Supported LLM Providers
 
@@ -50,7 +52,7 @@ python exercises/00_setup/01_test_connection.py
 
 ```bash
 # 1. Clone the repository
-git clone <repo-url>
+git clone https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns.git
 cd AI_Workshop_Agentic_Patterns
 
 # 2. Create a virtual environment
@@ -80,46 +82,64 @@ mkdocs serve
 
 ```
 AI_Workshop_Agentic_Patterns/
-├── exercises/           # Hands-on Python exercises
-│   ├── 00_setup/        # Connection test
-│   ├── 01_llm_basics/   # Chat completions, system prompts, structured outputs
-│   ├── 02_tool_use/     # Function calling, agent loop
-│   ├── 03_single_agent/ # Complete single agent
-│   ├── 04_sequential/   # Pipeline pattern
-│   ├── 05_concurrent/   # Fan-out/fan-in pattern
-│   ├── 06_group_chat/   # Shared conversation + maker-checker
-│   ├── 07_handoff/      # Dynamic routing
-│   ├── 08_magentic/     # Adaptive planning
-│   └── commons/         # Provider abstraction, agent class, utilities
-├── docs/                # MKDocs Material site (primary learning material)
-│   ├── concepts/        # Foundational concept pages
-│   ├── patterns/        # Orchestration pattern deep-dives
-│   └── implementation/  # Cross-cutting concerns
+├── exercises/                # Hands-on Python exercises
+│   ├── 00_setup/             # Connection test
+│   ├── 01_llm_basics/        # Chat completions, system prompts, structured outputs
+│   ├── 02_tool_use/          # Function calling, agent loop
+│   ├── 03_single_agent/      # Complete single agent
+│   ├── 04_sequential/        # Pipeline pattern
+│   ├── 05_concurrent/        # Fan-out/fan-in pattern
+│   ├── 06_group_chat/        # Round-robin brainstorm + maker-checker
+│   ├── 07_handoff/           # Dynamic routing
+│   ├── 08_magentic/          # Adaptive planning
+│   └── commons/              # Provider abstraction, agent class, utilities
+├── docs/                     # MKDocs Material site (primary learning material)
+│   ├── concepts/             # Chat API, system prompts, function calling,
+│   │                         #   structured outputs, agent loop, payload walkthrough
+│   ├── patterns/             # Single agent, sequential, concurrent, brainstorm,
+│   │                         #   maker-checker, handoff, magentic, orchestration overview
+│   ├── exercises/            # Per-exercise documentation with interactive widgets
+│   └── production-considerations/  # Context management, reliability, choosing patterns
 ├── mkdocs.yml
 ├── requirements.txt
 └── .env.example
 ```
 
+## Documentation Site
+
+The MKDocs Material site is the **primary learning material**. It includes:
+
+- **Concept pages** — Foundational theory (Chat API, system prompts, function calling, structured outputs)
+- **Pattern pages** — Deep dives into each orchestration pattern with architecture diagrams
+- **Exercise pages** — Step-by-step guidance with interactive message flow visualizations and API payload toggles
+- **Production considerations** — Context management, reliability, and choosing the right pattern
+
+Start the docs site with `mkdocs serve`, then follow the navigation from Setup → Concepts → Patterns.
+
 ## Presentation Slides
 
 Chapter-by-chapter slide decks to guide participants through the workshop:
 
-| Chapter | File | Slides | Topics |
-|---------|------|--------|--------|
-| **1 — LLM Foundations** | [`Chapter1_LLM_Foundations.pptx`](Chapter1_LLM_Foundations.pptx) | 12 | Workshop overview, commons module, Chat API, system prompts, structured outputs |
-| **2 — Tools & Function Calling** | [`Chapter2_Tools_Function_Calling.pptx`](Chapter2_Tools_Function_Calling.pptx) | 7 | Tool definitions, 4-step cycle, agent loop, mock tools |
-| **3 — Single Agent** | [`Chapter3_Single_Agent.pptx`](Chapter3_Single_Agent.pptx) | 4 | Agent dataclass, run() function, persistent conversation |
-| **4 — Multi-Agent Orchestration** | [`Chapter4_Multi_Agent.pptx`](Chapter4_Multi_Agent.pptx) | 10 | Sequential, concurrent, group chat, maker-checker |
-| **5 — Advanced Patterns** | [`Chapter5_Advanced_Patterns.pptx`](Chapter5_Advanced_Patterns.pptx) | 10 | Handoff, magentic, choosing patterns, context management, reliability |
-
-Each deck includes both theory slides and exercise code walkthrough slides with key code snippets.
+| Chapter | File | Topics |
+|---------|------|--------|
+| **1 — LLM Foundations** | [`Chapter1_LLM_Foundations.pptx`](Chapter1_LLM_Foundations.pptx) | Workshop overview, commons module, Chat API, system prompts, structured outputs |
+| **2 — Tools & Function Calling** | [`Chapter2_Tools_Function_Calling.pptx`](Chapter2_Tools_Function_Calling.pptx) | Tool definitions, 4-step cycle, agent loop, mock tools |
+| **3 — Single Agent** | [`Chapter3_Single_Agent.pptx`](Chapter3_Single_Agent.pptx) | Agent dataclass, run() function, persistent conversation |
+| **4 — Multi-Agent Orchestration** | [`Chapter4_Multi_Agent.pptx`](Chapter4_Multi_Agent.pptx) | Sequential, concurrent, group chat, maker-checker |
+| **5 — Advanced Patterns** | [`Chapter5_Advanced_Patterns.pptx`](Chapter5_Advanced_Patterns.pptx) | Handoff, magentic, choosing patterns, context management, reliability |
 
 ## Learning Path
 
 > **Read the docs first, then code.** The MKDocs site is the primary learning material.
 > Exercises reinforce what you learn — they don't replace the documentation.
 
-Start the docs site with `mkdocs serve`, then follow the navigation from Setup → Concepts → Patterns.
+## Share This Workshop
+
+If you find this workshop useful, share it with your network!
+
+[![Share on LinkedIn](https://img.shields.io/badge/LinkedIn-Share-0A66C2?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns)
+[![Share on X](https://img.shields.io/badge/X-Share-000?logo=x)](https://x.com/intent/tweet?text=Check%20out%20this%20hands-on%20workshop%20on%20Agentic%20AI%20Design%20Patterns%20%E2%80%94%20pure%20Python%2C%20no%20frameworks!&url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns)
+[![Share on Reddit](https://img.shields.io/badge/Reddit-Share-FF4500?logo=reddit)](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns&title=Agentic%20AI%20Design%20Patterns%20Workshop)
 
 ## References
 

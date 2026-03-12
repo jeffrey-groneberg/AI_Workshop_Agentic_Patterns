@@ -131,4 +131,4 @@ Structured logging showing each pipeline stage, what context is passed between a
 
 ## Next
 
-→ [Exercise 05: Concurrent Pattern](05_concurrent.md)
+→ Next: [Exercise 05: Concurrent Pattern](../05_concurrent/)

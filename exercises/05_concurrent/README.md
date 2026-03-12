@@ -234,4 +234,4 @@ Logging showing parallel agent launches, individual completions, and the final a
 
 ## Next
 
-→ [Exercise 06: Brainstorm](06_brainstorm.md)
+→ Next: [Exercise 06: Group Chat](../06_group_chat/)

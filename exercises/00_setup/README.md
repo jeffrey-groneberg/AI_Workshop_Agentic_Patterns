@@ -71,4 +71,4 @@ A greeting from the model confirming connectivity, along with provider and model
 
 ## Next
 
-→ [Exercise 01: Chat Completion](01_chat_completion.md)
+→ Next: [Exercise 01: LLM Basics](../01_llm_basics/)
