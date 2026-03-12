@@ -28,7 +28,7 @@ theme:
     - content.tabs.link
 
 copyright: >
-  This is not an official Microsoft product and does not constitute official Microsoft documentation, training materials, intellectual property, or product guidance.
+  This is not an official Microsoft product and does not constitute official Microsoft documentation, training materials, or product guidance.
 
 extra_css:
   - css/message-flow.css
