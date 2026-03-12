@@ -94,6 +94,34 @@ sequenceDiagram
 !!! tip "When to use this pattern"
     The concurrent pattern works best when sub-tasks are **independent** — no agent needs another agent's output to do its work. If agents have dependencies, use the sequential pattern instead. You can also combine both: parallel fan-out followed by sequential refinement.
 
+<div class="message-flow-interactive" markdown="block" data-title="Stock Analysis: Parallel Fan-Out + Aggregation" data-context-type="isolated" data-context-label="Each analyst gets its own isolated messages list — no shared state between parallel agents">
+
+<div class="mf-step" data-description="Fan-out: The same query is sent to three analysts in parallel, each with its own messages list and specialized system prompt">
+<div class="mf-msg" data-role="system" data-list="fundamental" data-agent="Fundamental">You are a fundamental analyst. Evaluate financial health, revenue growth, earnings, market position, and business model sustainability.</div>
+<div class="mf-msg" data-role="user" data-list="fundamental">Analyze NVDA stock</div>
+<div class="mf-msg" data-role="system" data-list="technical" data-agent="Technical">You are a technical analyst. Evaluate price trends, support/resistance levels, moving averages, RSI, and chart patterns.</div>
+<div class="mf-msg" data-role="user" data-list="technical">Analyze NVDA stock</div>
+<div class="mf-msg" data-role="system" data-list="sentiment" data-agent="Sentiment">You are a sentiment analyst. Evaluate news coverage, social media buzz, analyst ratings, and overall market mood.</div>
+<div class="mf-msg" data-role="user" data-list="sentiment">Analyze NVDA stock</div>
+</div>
+
+<div class="mf-step" data-description="All three analysts respond independently and in parallel — they cannot see each other's output or reasoning">
+<div class="mf-msg" data-role="assistant" data-list="fundamental" data-agent="Fundamental">NVDA shows exceptional fundamentals: revenue grew 122% YoY driven by data center demand. P/E ratio is high but justified by growth trajectory. Strong competitive moat in GPU and AI accelerator markets. Risk: geopolitical export restrictions to China.</div>
+<div class="mf-msg" data-role="assistant" data-list="technical" data-agent="Technical">NVDA is in a strong uptrend. Breakout above $400 and $500 resistance levels confirmed. Golden cross (50-day MA above 200-day MA). RSI at 60-70, moderately overbought. Support at $450-460. MACD bullish but flattening — momentum may slow.</div>
+<div class="mf-msg" data-role="assistant" data-list="sentiment" data-agent="Sentiment">Market sentiment overwhelmingly positive. AI hype cycle driving strong retail and institutional interest. Analyst upgrades frequent. Limited insider selling signals confidence. Risk: sentiment-driven rallies could amplify volatility if enthusiasm wanes.</div>
+</div>
+
+<div class="mf-step" data-description="Fan-in: All three outputs are combined into a single text block with === headers and sent to the aggregator in a fresh messages list">
+<div class="mf-msg" data-role="system" data-list="aggregator" data-agent="Aggregator">You are a senior investment strategist. Synthesize multiple analyst reports into a unified investment recommendation with clear reasoning.</div>
+<div class="mf-msg" data-role="user" data-list="aggregator">Synthesize these analyses: === Fundamental === Revenue grew 122% YoY, strong moat in AI... === Technical === Strong uptrend, RSI 60-70, support at $450... === Sentiment === Overwhelmingly positive, AI hype driving interest...</div>
+</div>
+
+<div class="mf-step" data-description="The aggregator produces a unified report drawing from all three perspectives — the only agent that sees all analyst outputs">
+<div class="mf-msg" data-role="assistant" data-list="aggregator" data-agent="Aggregator">NVDA Investment Summary: BUY with caution. Strong fundamentals and technical momentum support continued growth. However, elevated sentiment and high RSI suggest waiting for a pullback to the $450 support level before adding positions. Key risks: geopolitical export restrictions and momentum slowdown.</div>
+</div>
+
+</div>
+
 ## Message Flow: A Practical Example
 
 This example shows exactly what each agent's `messages` list looks like at runtime. Notice that **every agent gets its own isolated list** — there is no shared state.

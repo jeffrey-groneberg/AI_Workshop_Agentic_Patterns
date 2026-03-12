@@ -37,6 +37,24 @@ sequenceDiagram
 
 **Structured output:** Not used. The response is plain text.
 
+## Interactive Message Flow
+
+<div class="message-flow-interactive" markdown="block" data-title="Setup: Test Connection" data-context-type="isolated" data-context-label="Single request/response — no messages are accumulated or reused">
+
+<div class="mf-step" data-description="The system prompt establishes the assistant's identity">
+<div class="mf-msg" data-role="system" data-list="messages">You are a helpful assistant.</div>
+</div>
+
+<div class="mf-step" data-description="The user sends a simple test message to verify the LLM connection works">
+<div class="mf-msg" data-role="user" data-list="messages">Say hello and confirm you are working. Keep it brief.</div>
+</div>
+
+<div class="mf-step" data-description="The assistant responds — connection confirmed. This is the simplest possible LLM interaction.">
+<div class="mf-msg" data-role="assistant" data-list="messages">Hello! I'm working and ready to help. What can I do for you?</div>
+</div>
+
+</div>
+
 ## Files
 
 1. **`01_test_connection.py`** — Tests your API connection and prints provider info

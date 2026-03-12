@@ -132,6 +132,51 @@ All produced via `client.chat.completions.parse()` with Pydantic models, ensurin
 !!! warning "Complexity tradeoff"
     The Magentic pattern is the most powerful but also the most complex. It involves multiple LLM calls (planning + N workers + adaptation + reporting), structured outputs for plan management, and mutable shared state. Use it when simpler patterns like sequential or concurrent don't provide enough flexibility — for example, when the plan itself needs to change based on intermediate results.
 
+<div class="message-flow-interactive" markdown="block" data-title="Incident Response: Manager-Worker with Task Ledger" data-context-type="task-ledger" data-context-label="Manager structures work via plans. Workers get task-specific context only. TaskLedger tracks state.">
+
+<div class="mf-step" data-description="An incident report arrives. The manager will analyze it and create a structured plan with task assignments.">
+<div class="mf-msg" data-role="system" data-list="manager" data-agent="Manager">You are an incident response manager. Analyze incidents and create structured plans assigning tasks to diagnostic, infrastructure, and communication specialists.</div>
+<div class="mf-msg" data-role="user" data-list="manager">CRITICAL: Checkout service returning 500 errors for 30% of payment requests. Started at 14:30 UTC. Error rate spiked after 14:00 deployment of v2.3.1. Database connection pool metrics show elevated wait times.</div>
+</div>
+
+<div class="mf-step" data-description="Manager produces a structured IncidentPlan via parse(). Tasks are added to the TaskLedger for tracking.">
+<div class="mf-msg" data-role="structured" data-list="manager" data-agent="IncidentPlan">assessment: Critical payment service outage linked to database connection issues after v2.3.1 deployment | tasks: [1. Diagnostic: Analyze error logs for specific exceptions causing 500 errors, 2. Infrastructure: Investigate database connection health and capacity, 3. Communication: Publish customer acknowledgment on status page, 4. Infrastructure: Check effects of v2.3.1 deployment]</div>
+</div>
+
+<div class="mf-step" data-description="Phase 1: Workers execute tasks. Each gets ONLY the incident description + their specific task — not the full ledger or other workers' tasks.">
+<div class="mf-msg" data-role="system" data-list="diagnostic" data-agent="Diagnostic">You are a diagnostic specialist. Analyze application logs and errors to identify root causes.</div>
+<div class="mf-msg" data-role="user" data-list="diagnostic">INCIDENT: Checkout service 500 errors at 30% rate since 14:30 UTC. YOUR TASK: Analyze error logs to identify specific exceptions causing the 500 errors.</div>
+<div class="mf-msg" data-role="system" data-list="infrastructure" data-agent="Infrastructure">You are an infrastructure specialist. Check system health, capacity, deployments, and network status.</div>
+<div class="mf-msg" data-role="user" data-list="infrastructure">INCIDENT: Checkout service 500 errors at 30% rate since 14:30 UTC. YOUR TASK: Investigate database connection health and capacity.</div>
+<div class="mf-msg" data-role="system" data-list="communication" data-agent="Communication">You are a communications specialist. Draft clear, empathetic customer-facing notifications.</div>
+<div class="mf-msg" data-role="user" data-list="communication">INCIDENT: Checkout service 500 errors at 30% rate since 14:30 UTC. YOUR TASK: Publish immediate customer acknowledgment on status page.</div>
+</div>
+
+<div class="mf-step" data-description="Workers complete Phase 1 tasks. Results are recorded in the TaskLedger as findings.">
+<div class="mf-msg" data-role="assistant" data-list="diagnostic" data-agent="Diagnostic">Found repeated java.sql.SQLException: Connection pool exhausted and TimeoutException: Unable to acquire database connection. Errors correlate with elevated connection pool wait times starting after 14:00 deployment.</div>
+<div class="mf-msg" data-role="assistant" data-list="infrastructure" data-agent="Infrastructure">Database connection pool at 95% utilization (threshold: 80%). Wait times averaging 3 seconds. No hardware exhaustion. v2.3.1 deployment introduced changes to database query handling — increased execution times and deadlock occurrences.</div>
+<div class="mf-msg" data-role="assistant" data-list="communication" data-agent="Communication">Status Update published: We are experiencing intermittent payment processing delays. Our team has identified the issue and is implementing a fix. No payment data has been compromised.</div>
+</div>
+
+<div class="mf-step" data-description="Manager reviews all findings and adapts the plan. AdaptedPlan adds new tasks based on what was learned.">
+<div class="mf-msg" data-role="user" data-list="manager">Findings: Diagnostic found connection pool exhaustion from v2.3.1 query changes. Infrastructure confirms pool at 95%, elevated wait times, deadlocks. Communication published acknowledgment.</div>
+<div class="mf-msg" data-role="structured" data-list="manager" data-agent="AdaptedPlan">analysis: Root cause confirmed — v2.3.1 introduced inefficient query handling causing connection pool exhaustion | new_tasks: [5. Infrastructure: Roll back to v2.3.0, 6. Infrastructure: Expand connection pool size temporarily, 7. Diagnostic: Verify error rate returns to normal after rollback]</div>
+</div>
+
+<div class="mf-step" data-description="Phase 2: New tasks from the adapted plan are executed. Workers get updated task-specific context.">
+<div class="mf-msg" data-role="user" data-list="infrastructure">YOUR TASK: Roll back checkout service to v2.3.0 and expand connection pool size temporarily.</div>
+<div class="mf-msg" data-role="assistant" data-list="infrastructure" data-agent="Infrastructure">Rollback to v2.3.0 complete. Connection pool expanded by 50%. Pool utilization dropping from 95% to normal levels. Error rate decreasing.</div>
+<div class="mf-msg" data-role="user" data-list="diagnostic">YOUR TASK: Verify error rate returns to normal after rollback.</div>
+<div class="mf-msg" data-role="assistant" data-list="diagnostic" data-agent="Diagnostic">Error rate now at 0.2% (normal baseline). All transaction queues draining. Payment processing fully restored as of 15:05 UTC.</div>
+</div>
+
+<div class="mf-step" data-description="Manager produces the final incident report synthesizing all findings, actions taken, and prevention recommendations.">
+<div class="mf-msg" data-role="user" data-list="manager">All tasks complete. Produce final incident report.</div>
+<div class="mf-msg" data-role="assistant" data-list="manager" data-agent="Manager">INCIDENT REPORT: Payment Service Outage. Duration: 14:30-15:05 UTC (35 min). Root cause: Connection pool exhaustion from inefficient query handling in v2.3.1. Resolution: Rolled back to v2.3.0, expanded pool temporarily. Impact: 30% transaction failure rate. Prevention: Fix query handling before re-deploying, add connection pool monitoring alerts, implement phased rollouts.</div>
+</div>
+
+</div>
+
 ## Files
 
 1. **`01_incident_response.py`** — Manager handles an incident by coordinating diagnostic, infrastructure, and communication agents

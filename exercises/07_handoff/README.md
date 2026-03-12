@@ -83,6 +83,34 @@ sequenceDiagram
 !!! info "Why structured handoff matters"
     Compared to passing raw conversation history, a structured handoff object provides: (1) **Reliable routing** — category is a typed field, not a substring match. (2) **Context compaction** — the specialist gets only relevant info, not the full triage conversation. (3) **Auditability** — the reasoning field documents why the triage decision was made.
 
+<div class="message-flow-interactive" markdown="block" data-title="Support Triage: Structured Handoff" data-context-type="structured" data-context-label="Triage and specialist never share a messages list — a structured HandoffContext bridges them">
+
+<div class="mf-step" data-description="Triage agent receives the raw customer query in its own fresh messages list">
+<div class="mf-msg" data-role="system" data-list="triage" data-agent="Triage Agent">You are a support triage agent. Classify the customer query by category (billing, account, technical) and priority (high, medium, low). Extract relevant details for the specialist.</div>
+<div class="mf-msg" data-role="user" data-list="triage">I was charged twice for order ORD-1001. I need a refund for the duplicate charge.</div>
+</div>
+
+<div class="mf-step" data-description="Triage agent returns a structured TriageDecision via chat.completions.parse() — not free text. This enables reliable routing.">
+<div class="mf-msg" data-role="structured" data-list="triage" data-agent="TriageDecision">category: billing | priority: high | reasoning: Duplicate charge for a specific order requires immediate financial correction | extracted_info: order_id=ORD-1001, issue=duplicate charge</div>
+</div>
+
+<div class="mf-step" data-description="A HandoffContext dataclass is built from the TriageDecision — compacting the information for the specialist. This is the structured boundary.">
+<div class="mf-msg" data-role="handoff" data-list="triage" data-agent="HandoffContext">customer_query: I was charged twice for order ORD-1001... | category: billing | priority: high | extracted_info: {order_id: ORD-1001, issue: duplicate charge}</div>
+</div>
+
+<div class="mf-step" data-description="Billing specialist gets a NEW messages list with the handoff context as user input — it never sees the triage conversation or system prompt">
+<div class="mf-msg" data-role="system" data-list="specialist" data-agent="Billing Specialist">You are a billing specialist. Resolve billing issues using your tools: lookup_order, process_refund.</div>
+<div class="mf-msg" data-role="user" data-list="specialist">Customer reports duplicate charge for order ORD-1001 and requests a refund. Priority: high. Please investigate and resolve.</div>
+</div>
+
+<div class="mf-step" data-description="Billing specialist uses tools to look up the order, verify the issue, and process the refund. The triage agent is no longer involved.">
+<div class="mf-msg" data-role="tool_calls" data-list="specialist" data-agent="Billing Specialist">lookup_order(order_id='ORD-1001') then process_refund(order_id='ORD-1001', reason='Duplicate charge')</div>
+<div class="mf-msg" data-role="tool" data-list="specialist" data-agent="process_refund">{"refund_status": "approved", "refund_amount": 114.98, "estimated_days": 6, "reference": "REF-32879"}</div>
+<div class="mf-msg" data-role="assistant" data-list="specialist" data-agent="Billing Specialist">The duplicate charge for order ORD-1001 has been refunded. Refund amount: $114.98. Reference: REF-32879. You should see it in your account within 6 business days.</div>
+</div>
+
+</div>
+
 ## Message Flow: A Practical Example
 
 This example follows a single customer query through the full handoff lifecycle. Unlike group chat (shared list) or concurrent (isolated lists), the handoff pattern creates a **structured boundary** between the triage agent and the specialist — they never share a messages list.

@@ -1,0 +1,242 @@
+/* Interactive Message Flow Component */
+/* Works with MkDocs Material light + dark (slate) themes */
+
+.message-flow-interactive {
+  margin: 1.5em 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--md-default-bg-color);
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.mf-wrapper {
+  padding: 0;
+}
+
+.mf-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.75em 1em;
+  background: var(--md-code-bg-color);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.mf-title {
+  font-weight: 700;
+  font-size: 0.95em;
+}
+
+/* ── Context badges ─────────────────────────────────── */
+.mf-badge {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.mf-badge--isolated       { background: #95a5a6; color: #fff; }
+.mf-badge--growing         { background: #3498db; color: #fff; }
+.mf-badge--shared          { background: #2980b9; color: #fff; }
+.mf-badge--structured      { background: #f39c12; color: #fff; }
+.mf-badge--task-ledger     { background: #8e44ad; color: #fff; }
+.mf-badge--independent     { background: #7f8c8d; color: #fff; }
+
+/* ── Step description ───────────────────────────────── */
+.mf-description {
+  padding: 0.6em 1em;
+  font-size: 0.9em;
+  color: var(--md-default-fg-color--light);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Controls ───────────────────────────────────────── */
+.mf-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-code-bg-color);
+}
+
+.mf-btn {
+  background: var(--md-primary-fg-color, #000);
+  color: var(--md-primary-bg-color, #fff);
+  border: none;
+  padding: 0.35em 0.9em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.mf-btn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.mf-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.mf-counter {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ── Stack area ─────────────────────────────────────── */
+.mf-stack-area {
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+  min-height: 80px;
+  overflow-x: auto;
+}
+
+.mf-stack-area--single {
+  flex-direction: column;
+}
+
+.mf-stack-area--single .mf-list-col {
+  width: 100%;
+}
+
+.mf-stack-area--multi {
+  flex-direction: row;
+}
+
+.mf-list-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.mf-list-header {
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--md-default-fg-color--light);
+  padding: 0.3em 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid var(--md-default-fg-color--lightest);
+}
+
+.mf-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+/* ── Message cards ──────────────────────────────────── */
+.mf-card {
+  border-left: 4px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em 0.75em;
+  background: var(--md-code-bg-color);
+  transition: background 0.2s;
+}
+
+.mf-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+.mf-role {
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.mf-agent {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--md-default-fg-color--light);
+}
+
+.mf-content {
+  font-size: 0.85em;
+  line-height: 1.5;
+  color: var(--md-default-fg-color);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Role-based colors */
+.mf-card--system     { border-left-color: #95a5a6; }
+.mf-card--system .mf-role { background: #95a5a6; }
+
+.mf-card--user       { border-left-color: #3498db; }
+.mf-card--user .mf-role { background: #3498db; }
+
+.mf-card--assistant  { border-left-color: #27ae60; }
+.mf-card--assistant .mf-role { background: #27ae60; }
+
+.mf-card--tool_calls { border-left-color: #8e44ad; }
+.mf-card--tool_calls .mf-role { background: #8e44ad; }
+
+.mf-card--tool       { border-left-color: #f39c12; }
+.mf-card--tool .mf-role { background: #f39c12; }
+
+.mf-card--structured { border-left-color: #e67e22; }
+.mf-card--structured .mf-role { background: #e67e22; }
+
+.mf-card--handoff    { border-left-color: #e74c3c; }
+.mf-card--handoff .mf-role { background: #e74c3c; }
+
+.mf-card--ledger     { border-left-color: #9b59b6; }
+.mf-card--ledger .mf-role { background: #9b59b6; }
+
+/* ── Slide-in animation ─────────────────────────────── */
+@keyframes mf-slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mf-card--new {
+  animation: mf-slideIn 0.35s ease-out;
+}
+
+/* ── Message count indicator ─────────────────────────── */
+.mf-list-count {
+  font-size: 0.75em;
+  color: var(--md-default-fg-color--light);
+  text-align: right;
+  padding-top: 0.4em;
+  font-style: italic;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mf-stack-area--multi {
+    flex-direction: column;
+  }
+
+  .mf-list-col {
+    min-width: 100%;
+  }
+
+  .mf-header {
+    flex-wrap: wrap;
+  }
+}
