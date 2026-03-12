@@ -1,6 +1,8 @@
 site_name: "Agentic AI Design Patterns Workshop"
 site_description: "A hands-on workshop teaching agentic AI design patterns using pure Python and the OpenAI SDK"
 site_url: ""
+repo_url: https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns
+repo_name: jeffreygroneberg/AI_Workshop_Agentic_Patterns
 
 theme:
   name: material
@@ -32,9 +34,11 @@ copyright: >
 
 extra_css:
   - css/message-flow.css
+  - css/share-buttons.css
 
 extra_javascript:
   - js/message-flow.js
+  - js/share-buttons.js
 
 markdown_extensions:
   - admonition
