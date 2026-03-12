@@ -35,12 +35,10 @@ copyright: >
 extra_css:
   - css/message-flow.css
   - css/share-buttons.css
-  - css/qr-code.css
 
 extra_javascript:
   - js/message-flow.js
   - js/share-buttons.js
-  - js/qr-sidebar.js
 
 markdown_extensions:
   - admonition
@@ -67,6 +65,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - "📱 QR Code": qr-code.md
   - Setup:
       - Getting Started: setup.md
       - Workshop TUI: workshop-tui.md
