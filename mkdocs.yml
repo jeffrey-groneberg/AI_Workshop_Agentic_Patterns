@@ -4,6 +4,8 @@ site_url: ""
 
 theme:
   name: material
+  icon:
+    logo: fontawesome/brands/microsoft
   palette:
     - scheme: default
       primary: black
@@ -24,6 +26,10 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+
+copyright: >
+  &copy; 2026 Microsoft Corporation — Built exclusively for SAP DKOM 2026.
+  This workshop does not constitute official Microsoft documentation, training materials, or product guidance.
 
 markdown_extensions:
   - admonition
