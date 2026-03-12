@@ -6,9 +6,10 @@ Implement multi-agent group conversations with shared context, including the mak
 
 ## Concepts Covered
 
+- **Round-robin orchestration** — agents take turns in a fixed, repeating cycle
 - Shared conversation thread across agents
 - Chat manager for speaking order and termination
-- Maker-checker / evaluator-optimizer loop
+- Maker-checker / evaluator-optimizer loop (reflection pattern)
 - Context window management in multi-agent conversations
 
 ## How It Works
@@ -17,7 +18,33 @@ This exercise contains two variants of the group chat pattern, each with differe
 
 ### Exercise 1: Brainstorm (Round-Robin)
 
-Three agents — Product Manager, Designer, and Engineer — share a single `shared_messages` list and take turns in a fixed round-robin order. Each agent sees the entire conversation history, prepends its own system prompt, and adds its reply back to the shared list.
+**Round-robin** is the simplest orchestration strategy for multi-agent group chats: agents speak in a **fixed, repeating order**. Each agent gets exactly one turn per round, and the cycle repeats for a configured number of rounds. No agent can interrupt, skip, or speak out of turn.
+
+Three agents — Product Manager, Designer, and Engineer — share a single `shared_messages` list. The orchestrator cycles through them in a predetermined order (`SPEAKING_ORDER`), prepends each agent's own system prompt before calling the API, and appends the reply back to the shared list.
+
+```python
+# The round-robin orchestration loop
+SPEAKING_ORDER = ["Product Manager", "Designer", "Engineer"]
+MAX_ROUNDS = 3  # → 3 rounds × 3 agents = 9 total turns
+
+for round_num in range(1, MAX_ROUNDS + 1):
+    for agent_name in SPEAKING_ORDER:        # fixed order each round
+        # Prepend this agent's system prompt to shared context
+        messages = [
+            {"role": "system", "content": AGENTS[agent_name]},
+            *shared_messages,
+        ]
+        # Call the LLM with this agent's persona + full history
+        response = client.chat.completions.create(model=model, messages=messages)
+        reply = response.choices[0].message.content
+        # Append reply to the SHARED list — all agents see it next turn
+        shared_messages.append({
+            "role": "assistant",
+            "content": f"[{agent_name}]: {reply}",
+        })
+```
+
+This creates **predictable, democratic** conversations where every perspective is heard equally. The trade-off is rigidity — agents cannot interrupt, respond out of order, or dynamically decide who speaks next. For more flexible conversations, you would need a manager-driven or priority-based speaking strategy.
 
 ```mermaid
 flowchart TB
@@ -140,6 +167,12 @@ sequenceDiagram
 
 <div class="message-flow-interactive" markdown="block" data-title="Brainstorm: Shared Conversation Thread" data-context-type="shared" data-context-label="All agents read and write to ONE shared messages list — context grows with every turn">
 
+<div class="mf-step" data-description="Three agents are created, each with a specialized system prompt. These are prepended per-agent before each API call — they are NOT stored in shared_messages.">
+<div class="mf-msg" data-role="system" data-list="agent_system_prompts" data-agent="Product Manager" data-payload='{"role": "system", "content": "You are an experienced Product Manager in a brainstorm session. Focus on market fit, user needs, business viability, and competitive landscape. Challenge ideas constructively. Build on others&#39; points. Keep contributions to 2-3 sentences."}'>You are an experienced Product Manager in a brainstorm session. Focus on market fit, user needs, business viability, and competitive landscape. Challenge ideas constructively. Build on others' points. Keep contributions to 2-3 sentences.</div>
+<div class="mf-msg" data-role="system" data-list="agent_system_prompts" data-agent="Designer" data-payload='{"role": "system", "content": "You are a creative UX Designer in a brainstorm session. Focus on user experience, interface design, accessibility, and user delight. Propose concrete design ideas. React to and build on what others say. Keep contributions to 2-3 sentences."}'>You are a creative UX Designer in a brainstorm session. Focus on user experience, interface design, accessibility, and user delight. Propose concrete design ideas. React to and build on what others say. Keep contributions to 2-3 sentences.</div>
+<div class="mf-msg" data-role="system" data-list="agent_system_prompts" data-agent="Engineer" data-payload='{"role": "system", "content": "You are a pragmatic Senior Engineer in a brainstorm session. Focus on technical feasibility, architecture, scalability, and implementation complexity. Be honest about trade-offs. Build on others&#39; points. Keep contributions to 2-3 sentences."}'>You are a pragmatic Senior Engineer in a brainstorm session. Focus on technical feasibility, architecture, scalability, and implementation complexity. Be honest about trade-offs. Build on others' points. Keep contributions to 2-3 sentences.</div>
+</div>
+
 <div class="mf-step" data-description="The shared messages list starts with the user prompt. All agents will see this and build on it.">
 <div class="mf-msg" data-role="user" data-list="shared_messages" data-payload='{"role": "user", "content": "Brainstorm a mobile app that helps people reduce food waste at home."}'>Brainstorm a mobile app that helps people reduce food waste at home.</div>
 </div>
@@ -163,6 +196,11 @@ sequenceDiagram
 </div>
 
 <div class="message-flow-interactive" markdown="block" data-title="Maker-Checker: Iterative Code Review" data-context-type="shared" data-context-label="Generator and Reviewer alternate on the same shared messages list until APPROVED">
+
+<div class="mf-step" data-description="Two agents are created: a Generator and a Reviewer, each with a specialized system prompt. These are prepended per-agent before each API call.">
+<div class="mf-msg" data-role="system" data-list="agent_system_prompts" data-agent="Generator" data-payload='{"role": "system", "content": "You are an expert Python developer. Write clean, well-documented Python code that follows best practices. When you receive feedback from a reviewer, carefully address each point and provide an improved version. Output ONLY the Python code (in a code block) — no extra commentary."}'>You are an expert Python developer. Write clean, well-documented Python code that follows best practices. When you receive feedback from a reviewer, carefully address each point and provide an improved version. Output ONLY the Python code (in a code block) — no extra commentary.</div>
+<div class="mf-msg" data-role="system" data-list="agent_system_prompts" data-agent="Reviewer" data-payload='{"role": "system", "content": "You are a meticulous code reviewer. Review the provided Python code for:\n1. Correctness — does it handle edge cases?\n2. Readability — clear naming, good structure?\n3. Best practices — type hints, docstrings, error handling?\n4. Performance — any obvious inefficiencies?\n\nIf the code is good enough, respond with exactly &#39;APPROVED&#39; as the first word.\nIf it needs improvement, provide specific, actionable feedback points.\nBe constructive but rigorous."}'>You are a meticulous code reviewer. Review the provided Python code for: 1. Correctness — does it handle edge cases? 2. Readability — clear naming, good structure? 3. Best practices — type hints, docstrings, error handling? 4. Performance — any obvious inefficiencies? If the code is good enough, respond with exactly 'APPROVED' as the first word. If it needs improvement, provide specific, actionable feedback points. Be constructive but rigorous.</div>
+</div>
 
 <div class="mf-step" data-description="The coding task is placed in the shared messages list. Both Generator and Reviewer will see this.">
 <div class="mf-msg" data-role="user" data-list="shared_messages" data-payload='{"role": "user", "content": "Write a Python function merge_sorted_lists(list1, list2) that merges two sorted lists into one sorted list. Do NOT use sorted() — implement the merge algorithm manually."}'>Write a Python function merge_sorted_lists(list1, list2) that merges two sorted lists into one sorted list. Do NOT use sorted() — implement the merge algorithm manually.</div>
