@@ -37,7 +37,8 @@
           role:    msgEl.getAttribute('data-role') || 'user',
           agent:   msgEl.getAttribute('data-agent') || '',
           content: msgEl.textContent.trim(),
-          list:    listName
+          list:    listName,
+          payload: msgEl.getAttribute('data-payload') || ''
         });
       });
       steps.push({ description: desc, messages: msgs });
@@ -122,6 +123,7 @@
             role:    m.role,
             agent:   m.agent,
             content: m.content,
+            payload: m.payload,
             isNew:   i === state.step
           });
         });
@@ -161,6 +163,37 @@
 
           card.appendChild(cardHeader);
           card.appendChild(content);
+
+          // Collapsible API payload
+          if (m.payload) {
+            var toggleBtn = el('button', 'mf-payload-toggle');
+            toggleBtn.textContent = '{ } Show API Payload';
+            toggleBtn.addEventListener('click', function () {
+              var block = this.nextElementSibling;
+              if (block.style.display === 'none') {
+                block.style.display = 'block';
+                this.textContent = '{ } Hide API Payload';
+                this.classList.add('mf-payload-toggle--active');
+              } else {
+                block.style.display = 'none';
+                this.textContent = '{ } Show API Payload';
+                this.classList.remove('mf-payload-toggle--active');
+              }
+            });
+
+            var payloadBlock = el('pre', 'mf-payload-block');
+            payloadBlock.style.display = 'none';
+            var payloadCode = el('code', 'mf-payload-code');
+            try {
+              payloadCode.textContent = JSON.stringify(JSON.parse(m.payload), null, 2);
+            } catch (e) {
+              payloadCode.textContent = m.payload;
+            }
+            payloadBlock.appendChild(payloadCode);
+            card.appendChild(toggleBtn);
+            card.appendChild(payloadBlock);
+          }
+
           msgContainer.appendChild(card);
         });
 

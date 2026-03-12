@@ -65,41 +65,41 @@ sequenceDiagram
 <div class="message-flow-interactive" markdown="block" data-title="Customer Support Agent: Multi-Turn Conversation" data-context-type="growing" data-context-label="Messages list persists across turns — this IS the agent's memory">
 
 <div class="mf-step" data-description="The system prompt defines the support agent's personality, role, and available tools">
-<div class="mf-msg" data-role="system" data-list="messages">You are a friendly customer support agent for an electronics store. Use your tools to look up orders, search FAQs, and process refunds.</div>
+<div class="mf-msg" data-role="system" data-list="messages" data-payload='{"role": "system", "content": "You are a friendly customer support agent for an electronics store. Use your tools to look up orders, search FAQs, and process refunds."}'>You are a friendly customer support agent for an electronics store. Use your tools to look up orders, search FAQs, and process refunds.</div>
 </div>
 
 <div class="mf-step" data-description="Turn 1: Customer asks about their order. The agent needs to look it up.">
-<div class="mf-msg" data-role="user" data-list="messages">Hi, I need help with my order ORD-1001. Can you tell me the status?</div>
+<div class="mf-msg" data-role="user" data-list="messages" data-payload='{"role": "user", "content": "Hi, I need help with my order ORD-1001. Can you tell me the status?"}'>Hi, I need help with my order ORD-1001. Can you tell me the status?</div>
 </div>
 
 <div class="mf-step" data-description="The agent decides to call lookup_order to find the order details">
-<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent">lookup_order(order_id='ORD-1001')</div>
+<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent" data-payload='{"role": "assistant", "content": null, "tool_calls": [{"id": "call_lo01", "type": "function", "function": {"name": "lookup_order", "arguments": "{\"order_id\":\"ORD-1001\"}"}}]}'>lookup_order(order_id='ORD-1001')</div>
 </div>
 
 <div class="mf-step" data-description="Tool returns order details. The agent loop calls the API again with this result in context.">
-<div class="mf-msg" data-role="tool" data-list="messages" data-agent="lookup_order">{"order_id": "ORD-1001", "product": "Wireless Headphones", "status": "delivered", "date": "2024-01-15"}</div>
+<div class="mf-msg" data-role="tool" data-list="messages" data-agent="lookup_order" data-payload='{"role": "tool", "tool_call_id": "call_lo01", "content": "{\"order_id\": \"ORD-1001\", \"product\": \"Wireless Headphones\", \"status\": \"delivered\", \"date\": \"2024-01-15\"}"}'>{"order_id": "ORD-1001", "product": "Wireless Headphones", "status": "delivered", "date": "2024-01-15"}</div>
 </div>
 
 <div class="mf-step" data-description="No more tool_calls needed — the agent responds with the order information">
-<div class="mf-msg" data-role="assistant" data-list="messages">Your order ORD-1001 for Wireless Headphones was delivered on January 15th. Is there anything else I can help you with?</div>
+<div class="mf-msg" data-role="assistant" data-list="messages" data-payload='{"role": "assistant", "content": "Your order ORD-1001 for Wireless Headphones was delivered on January 15th. Is there anything else I can help you with?"}'>Your order ORD-1001 for Wireless Headphones was delivered on January 15th. Is there anything else I can help you with?</div>
 </div>
 
 <div class="mf-step" data-description="Turn 2: Customer follows up with a new issue. The agent sees the FULL conversation history from Turn 1.">
-<div class="mf-msg" data-role="user" data-list="messages">I'm not happy with the headphones. The sound quality is poor. Can I get a refund?</div>
+<div class="mf-msg" data-role="user" data-list="messages" data-payload='{"role": "user", "content": "I&#39;m not happy with the headphones. The sound quality is poor. Can I get a refund?"}'>I'm not happy with the headphones. The sound quality is poor. Can I get a refund?</div>
 </div>
 
 <div class="mf-step" data-description="The agent searches the FAQ for refund policy before processing">
-<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent">search_faq(query='refund policy')</div>
+<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent" data-payload='{"role": "assistant", "content": null, "tool_calls": [{"id": "call_sf01", "type": "function", "function": {"name": "search_faq", "arguments": "{\"question\":\"refund policy\"}"}}]}'>search_faq(query='refund policy')</div>
 </div>
 
 <div class="mf-step" data-description="FAQ confirms policy. Agent now calls process_refund with the order details it remembers from Turn 1.">
-<div class="mf-msg" data-role="tool" data-list="messages" data-agent="search_faq">{"answer": "Refunds available within 30 days of delivery for defective or unsatisfactory products."}</div>
-<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent">process_refund(order_id='ORD-1001', reason='poor sound quality')</div>
+<div class="mf-msg" data-role="tool" data-list="messages" data-agent="search_faq" data-payload='{"role": "tool", "tool_call_id": "call_sf01", "content": "{\"answer\": \"Refunds available within 30 days of delivery for defective or unsatisfactory products.\"}"}'>{"answer": "Refunds available within 30 days of delivery for defective or unsatisfactory products."}</div>
+<div class="mf-msg" data-role="tool_calls" data-list="messages" data-agent="Support Agent" data-payload='{"role": "assistant", "content": null, "tool_calls": [{"id": "call_pr01", "type": "function", "function": {"name": "process_refund", "arguments": "{\"order_id\":\"ORD-1001\",\"reason\":\"poor sound quality\"}"}}]}'>process_refund(order_id='ORD-1001', reason='poor sound quality')</div>
 </div>
 
 <div class="mf-step" data-description="Refund processed. The agent uses full conversation context to provide a complete resolution.">
-<div class="mf-msg" data-role="tool" data-list="messages" data-agent="process_refund">{"status": "approved", "refund_amount": 79.99, "message": "Refund initiated"}</div>
-<div class="mf-msg" data-role="assistant" data-list="messages">I've processed a refund of $79.99 for your Wireless Headphones. You should see it in your account within 5-7 business days. I'm sorry about the sound quality issue!</div>
+<div class="mf-msg" data-role="tool" data-list="messages" data-agent="process_refund" data-payload='{"role": "tool", "tool_call_id": "call_pr01", "content": "{\"status\": \"approved\", \"refund_amount\": 79.99, \"message\": \"Refund initiated\"}"}'>{"status": "approved", "refund_amount": 79.99, "message": "Refund initiated"}</div>
+<div class="mf-msg" data-role="assistant" data-list="messages" data-payload='{"role": "assistant", "content": "I&#39;ve processed a refund of $79.99 for your Wireless Headphones. You should see it in your account within 5-7 business days. I&#39;m sorry about the sound quality issue!"}'>I've processed a refund of $79.99 for your Wireless Headphones. You should see it in your account within 5-7 business days. I'm sorry about the sound quality issue!</div>
 </div>
 
 </div>

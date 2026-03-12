@@ -87,30 +87,30 @@ sequenceDiagram
 <div class="message-flow-interactive" markdown="block" data-title="Content Pipeline: Research, Draft, Edit" data-context-type="structured" data-context-label="Each agent gets fresh context — only the final output text is passed forward">
 
 <div class="mf-step" data-description="Stage 1: Research agent receives the topic in a fresh messages list">
-<div class="mf-msg" data-role="system" data-list="research" data-agent="Research Agent">You are a research specialist. Gather key facts, statistics, and insights on the given topic.</div>
-<div class="mf-msg" data-role="user" data-list="research">Research the topic: The impact of remote work on software engineering productivity</div>
+<div class="mf-msg" data-role="system" data-list="research" data-agent="Research Agent" data-payload='{"role": "system", "content": "You are a research specialist. Gather key facts, statistics, and insights on the given topic."}'>You are a research specialist. Gather key facts, statistics, and insights on the given topic.</div>
+<div class="mf-msg" data-role="user" data-list="research" data-payload='{"role": "user", "content": "Research the topic: The impact of remote work on software engineering productivity"}'>Research the topic: The impact of remote work on software engineering productivity</div>
 </div>
 
 <div class="mf-step" data-description="Research agent produces findings. Only this output text moves to the next stage — not the system prompt or internal reasoning.">
-<div class="mf-msg" data-role="assistant" data-list="research" data-agent="Research Agent">Key findings: 1) Studies show 13% productivity increase for remote workers. 2) Communication overhead increases by 20%. 3) Code quality metrics remain stable. 4) Developer satisfaction up 45%. 5) Onboarding new team members is the biggest challenge.</div>
+<div class="mf-msg" data-role="assistant" data-list="research" data-agent="Research Agent" data-payload='{"role": "assistant", "content": "Key findings: 1) Studies show 13% productivity increase for remote workers. 2) Communication overhead increases by 20%. 3) Code quality metrics remain stable. 4) Developer satisfaction up 45%. 5) Onboarding new team members is the biggest challenge."}'>Key findings: 1) Studies show 13% productivity increase for remote workers. 2) Communication overhead increases by 20%. 3) Code quality metrics remain stable. 4) Developer satisfaction up 45%. 5) Onboarding new team members is the biggest challenge.</div>
 </div>
 
 <div class="mf-step" data-description="Stage 2: Draft agent gets a NEW messages list. It receives the research output as user input but never sees the research agent's system prompt.">
-<div class="mf-msg" data-role="system" data-list="draft" data-agent="Draft Agent">You are a skilled technical writer. Write a clear, engaging article based on the provided research.</div>
-<div class="mf-msg" data-role="user" data-list="draft">Write an article based on this research: Key findings: 1) Studies show 13% productivity increase... 2) Communication overhead increases by 20%... 3) Code quality metrics remain stable...</div>
+<div class="mf-msg" data-role="system" data-list="draft" data-agent="Draft Agent" data-payload='{"role": "system", "content": "You are a skilled technical writer. Write a clear, engaging article based on the provided research."}'>You are a skilled technical writer. Write a clear, engaging article based on the provided research.</div>
+<div class="mf-msg" data-role="user" data-list="draft" data-payload='{"role": "user", "content": "Write an article based on this research: Key findings: 1) Studies show 13% productivity increase... 2) Communication overhead increases by 20%... 3) Code quality metrics remain stable..."}'>Write an article based on this research: Key findings: 1) Studies show 13% productivity increase... 2) Communication overhead increases by 20%... 3) Code quality metrics remain stable...</div>
 </div>
 
 <div class="mf-step" data-description="Draft agent produces a full article. Only this text is forwarded to the editor.">
-<div class="mf-msg" data-role="assistant" data-list="draft" data-agent="Draft Agent">The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering. Studies reveal a 13% boost in individual productivity, though teams face new communication challenges with a 20% increase in coordination overhead...</div>
+<div class="mf-msg" data-role="assistant" data-list="draft" data-agent="Draft Agent" data-payload='{"role": "assistant", "content": "The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering. Studies reveal a 13% boost in individual productivity, though teams face new communication challenges with a 20% increase in coordination overhead..."}'>The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering. Studies reveal a 13% boost in individual productivity, though teams face new communication challenges with a 20% increase in coordination overhead...</div>
 </div>
 
 <div class="mf-step" data-description="Stage 3: Editor gets a NEW messages list with only the draft — no access to research notes or draft agent's system prompt">
-<div class="mf-msg" data-role="system" data-list="edit" data-agent="Editor Agent">You are an expert editor. Polish the article for clarity, flow, grammar, and professional style.</div>
-<div class="mf-msg" data-role="user" data-list="edit">Polish this draft: The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering...</div>
+<div class="mf-msg" data-role="system" data-list="edit" data-agent="Editor Agent" data-payload='{"role": "system", "content": "You are an expert editor. Polish the article for clarity, flow, grammar, and professional style."}'>You are an expert editor. Polish the article for clarity, flow, grammar, and professional style.</div>
+<div class="mf-msg" data-role="user" data-list="edit" data-payload='{"role": "user", "content": "Polish this draft: The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering..."}'>Polish this draft: The Remote Revolution: How Working From Home Changes Code. Remote work has transformed software engineering...</div>
 </div>
 
 <div class="mf-step" data-description="Editor produces the final polished article. The three-stage pipeline is complete.">
-<div class="mf-msg" data-role="assistant" data-list="edit" data-agent="Editor Agent">The Remote Revolution: Rethinking Productivity in Software Engineering. The shift to remote work has fundamentally reshaped how software teams operate — and the data tells a compelling story. Individual productivity has risen by 13%, yet this gain comes with a nuanced trade-off...</div>
+<div class="mf-msg" data-role="assistant" data-list="edit" data-agent="Editor Agent" data-payload='{"role": "assistant", "content": "The Remote Revolution: Rethinking Productivity in Software Engineering. The shift to remote work has fundamentally reshaped how software teams operate — and the data tells a compelling story. Individual productivity has risen by 13%, yet this gain comes with a nuanced trade-off..."}'>The Remote Revolution: Rethinking Productivity in Software Engineering. The shift to remote work has fundamentally reshaped how software teams operate — and the data tells a compelling story. Individual productivity has risen by 13%, yet this gain comes with a nuanced trade-off...</div>
 </div>
 
 </div>

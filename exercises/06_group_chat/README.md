@@ -141,23 +141,23 @@ sequenceDiagram
 <div class="message-flow-interactive" markdown="block" data-title="Brainstorm: Shared Conversation Thread" data-context-type="shared" data-context-label="All agents read and write to ONE shared messages list — context grows with every turn">
 
 <div class="mf-step" data-description="The shared messages list starts with the user prompt. All agents will see this and build on it.">
-<div class="mf-msg" data-role="user" data-list="shared_messages">Brainstorm a mobile app that helps people reduce food waste at home.</div>
+<div class="mf-msg" data-role="user" data-list="shared_messages" data-payload='{"role": "user", "content": "Brainstorm a mobile app that helps people reduce food waste at home."}'>Brainstorm a mobile app that helps people reduce food waste at home.</div>
 </div>
 
 <div class="mf-step" data-description="Round 1, Turn 1: Product Manager speaks first. Sees only the initial prompt.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Product Manager">The app should fit seamlessly into daily routines. Core features: meal planning based on expiry dates, recipes that use leftovers, and personalization to differentiate from basic tracking apps.</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Product Manager" data-payload='{"role": "assistant", "content": "The app should fit seamlessly into daily routines. Core features: meal planning based on expiry dates, recipes that use leftovers, and personalization to differentiate from basic tracking apps."}'>The app should fit seamlessly into daily routines. Core features: meal planning based on expiry dates, recipes that use leftovers, and personalization to differentiate from basic tracking apps.</div>
 </div>
 
 <div class="mf-step" data-description="Round 1, Turn 2: Designer speaks. Sees the prompt + PM's contribution and builds on it.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Designer">Building on that — add barcode scanning or photo recognition for quick food logging. Gamify with badges for reducing waste. Visual freshness indicators (green/yellow/red) for the pantry view. This adds efficiency and delight!</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Designer" data-payload='{"role": "assistant", "content": "Building on that — add barcode scanning or photo recognition for quick food logging. Gamify with badges for reducing waste. Visual freshness indicators (green/yellow/red) for the pantry view. This adds efficiency and delight!"}'>Building on that — add barcode scanning or photo recognition for quick food logging. Gamify with badges for reducing waste. Visual freshness indicators (green/yellow/red) for the pantry view. This adds efficiency and delight!</div>
 </div>
 
 <div class="mf-step" data-description="Round 1, Turn 3: Engineer speaks last. Sees ALL prior contributions and grounds them in technical reality.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Engineer">Barcode scanning requires third-party APIs or custom ML models — increases complexity. Prioritize low-latency architecture for real-time expiry tracking. Gamification can use server-side logic to manage progress efficiently without heavy client processing.</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Engineer" data-payload='{"role": "assistant", "content": "Barcode scanning requires third-party APIs or custom ML models — increases complexity. Prioritize low-latency architecture for real-time expiry tracking. Gamification can use server-side logic to manage progress efficiently without heavy client processing."}'>Barcode scanning requires third-party APIs or custom ML models — increases complexity. Prioritize low-latency architecture for real-time expiry tracking. Gamification can use server-side logic to manage progress efficiently without heavy client processing.</div>
 </div>
 
 <div class="mf-step" data-description="Round 2 begins: Each agent now sees ALL prior contributions. Context grows rapidly — this is the core tradeoff of the shared pattern.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Product Manager">To balance complexity and viability, start simple: manual item input + recipe suggestions. Scale to scanning later. Partner with grocery brands for discounts to users reducing waste — creating a win-win retention model.</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Product Manager" data-payload='{"role": "assistant", "content": "To balance complexity and viability, start simple: manual item input + recipe suggestions. Scale to scanning later. Partner with grocery brands for discounts to users reducing waste — creating a win-win retention model."}'>To balance complexity and viability, start simple: manual item input + recipe suggestions. Scale to scanning later. Partner with grocery brands for discounts to users reducing waste — creating a win-win retention model.</div>
 </div>
 
 </div>
@@ -165,15 +165,15 @@ sequenceDiagram
 <div class="message-flow-interactive" markdown="block" data-title="Maker-Checker: Iterative Code Review" data-context-type="shared" data-context-label="Generator and Reviewer alternate on the same shared messages list until APPROVED">
 
 <div class="mf-step" data-description="The coding task is placed in the shared messages list. Both Generator and Reviewer will see this.">
-<div class="mf-msg" data-role="user" data-list="shared_messages">Write a Python function merge_sorted_lists(list1, list2) that merges two sorted lists into one sorted list. Do NOT use sorted() — implement the merge algorithm manually.</div>
+<div class="mf-msg" data-role="user" data-list="shared_messages" data-payload='{"role": "user", "content": "Write a Python function merge_sorted_lists(list1, list2) that merges two sorted lists into one sorted list. Do NOT use sorted() — implement the merge algorithm manually."}'>Write a Python function merge_sorted_lists(list1, list2) that merges two sorted lists into one sorted list. Do NOT use sorted() — implement the merge algorithm manually.</div>
 </div>
 
 <div class="mf-step" data-description="Iteration 1 — Generator produces initial code. It sees only the task description.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Generator">def merge_sorted_lists(list1, list2): Two-pointer merge — initialize result=[], i=j=0. Compare elements, append smaller, advance pointer. After loop, extend with remaining elements. Includes docstring and edge case handling for empty lists.</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Generator" data-payload='{"role": "assistant", "content": "def merge_sorted_lists(list1, list2): Two-pointer merge — initialize result=[], i=j=0. Compare elements, append smaller, advance pointer. After loop, extend with remaining elements. Includes docstring and edge case handling for empty lists."}'>def merge_sorted_lists(list1, list2): Two-pointer merge — initialize result=[], i=j=0. Compare elements, append smaller, advance pointer. After loop, extend with remaining elements. Includes docstring and edge case handling for empty lists.</div>
 </div>
 
 <div class="mf-step" data-description="Iteration 1 — Reviewer evaluates. In the actual run, the code was clean enough to pass on first try.">
-<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Reviewer">APPROVED. The implementation correctly uses two-pointer merge with O(n) time complexity. Edge cases (empty lists, remaining elements) are handled properly. Type hints and docstring included. Code is clean and efficient.</div>
+<div class="mf-msg" data-role="assistant" data-list="shared_messages" data-agent="Reviewer" data-payload='{"role": "assistant", "content": "APPROVED. The implementation correctly uses two-pointer merge with O(n) time complexity. Edge cases (empty lists, remaining elements) are handled properly. Type hints and docstring included. Code is clean and efficient."}'>APPROVED. The implementation correctly uses two-pointer merge with O(n) time complexity. Edge cases (empty lists, remaining elements) are handled properly. Type hints and docstring included. Code is clean and efficient.</div>
 </div>
 
 </div>

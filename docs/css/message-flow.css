@@ -201,6 +201,50 @@
 .mf-card--ledger     { border-left-color: #9b59b6; }
 .mf-card--ledger .mf-role { background: #9b59b6; }
 
+/* ── API Payload toggle ────────────────────────────── */
+.mf-payload-toggle {
+  display: inline-block;
+  font-size: 0.72em;
+  font-family: var(--md-code-font-family, monospace);
+  background: transparent;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 3px;
+  padding: 0.15em 0.5em;
+  margin-top: 0.4em;
+  cursor: pointer;
+  color: var(--md-default-fg-color--light);
+  transition: background 0.2s, color 0.2s;
+}
+
+.mf-payload-toggle:hover {
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color);
+}
+
+.mf-payload-toggle--active {
+  background: var(--md-default-fg-color--lightest);
+}
+
+.mf-payload-block {
+  margin-top: 0.4em;
+  margin-bottom: 0;
+  padding: 0.6em 0.75em;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.mf-payload-code {
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.82em;
+  line-height: 1.5;
+  white-space: pre;
+  color: var(--md-default-fg-color);
+}
+
 /* ── Slide-in animation ─────────────────────────────── */
 @keyframes mf-slideIn {
   from {
