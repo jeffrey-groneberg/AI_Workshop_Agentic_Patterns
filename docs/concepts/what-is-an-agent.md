@@ -72,13 +72,13 @@ And a `run()` function that implements the loop. No inheritance, no metaclasses,
 
 ## Agent vs. Framework Agent
 
-| This Workshop | LangGraph | Pydantic AI |
+| This Workshop | [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/){:target="_blank"} | [Pydantic AI](https://ai.pydantic.dev/){:target="_blank"} |
 |--------------|-----------|-------------|
-| `Agent` dataclass | `StateGraph` node | `Agent` class |
-| `run()` function | Graph compilation + execution | `agent.run()` |
-| `messages` list | `TypedDict` state | Message history |
-| Python `dict` handoff | Conditional edges | Tool-based delegation |
-| `dataclass` context | State channels | Dependency injection |
+| `Agent` dataclass | `AssistantAgent` | `Agent` class |
+| `run()` function | Graph-based orchestration | `agent.run()` |
+| `messages` list | `ChatMessage` types | Message history |
+| Python `dict` handoff | `HandoffTermination` | Tool-based delegation |
+| `dataclass` context | `AgentContext` | Dependency injection |
 
 By building the agent yourself, you understand what every framework does internally.
 

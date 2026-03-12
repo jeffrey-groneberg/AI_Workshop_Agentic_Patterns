@@ -39,13 +39,13 @@ graph LR
 
 ## Philosophy
 
-This workshop deliberately avoids AI agent frameworks (LangChain, LangGraph, Semantic Kernel, CrewAI, etc.). Instead, you build everything from scratch using:
+This workshop deliberately avoids AI agent frameworks. Instead, you build everything from scratch using:
 
-- **OpenAI Python SDK** — the `openai` package for LLM calls
-- **Pydantic** — for structured outputs and tool parameter schemas
+- **[OpenAI Python SDK](https://github.com/openai/openai-python){:target="_blank"}** — the `openai` package for LLM calls
+- **[Pydantic](https://docs.pydantic.dev/latest/){:target="_blank"}** — for structured outputs and tool parameter schemas
 - **Python standard library** — `logging`, `dataclasses`, `concurrent.futures`, `pathlib`
 
-By building each pattern yourself, you understand *exactly* what frameworks do under the hood. This makes you a better user of any framework you choose later.
+By building each pattern yourself, you understand *exactly* what frameworks like the **[Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/){:target="_blank"}** do under the hood. This makes you a better user of any framework you choose later.
 
 ## Provider Flexibility
 

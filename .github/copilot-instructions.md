@@ -8,7 +8,7 @@ This is a multi-part workshop teaching agentic AI design patterns using pure Pyt
 
 ## Core Principles
 
-- **No AI frameworks**: No LangChain, LangGraph, CrewAI, Semantic Kernel, Azure AI Agent Service, or Pydantic AI. We teach the underlying patterns from scratch using only `openai`, `pydantic`, and Python stdlib.
+- **No AI frameworks**: No LangChain, LangGraph, CrewAI, Microsoft Agent Framework, Azure AI Agent Service, or Pydantic AI. We teach the underlying patterns from scratch using only `openai`, `pydantic`, and Python stdlib.
 - **Only stable APIs**: Use `client.chat.completions.create()` and `client.chat.completions.parse()`. **Never use `client.beta.*`** — no beta namespaces anywhere.
 - **Chat Completions API**: This is the primary API for all exercises. The Responses API is documented for reference only.
 - **Provider-agnostic**: All exercises work with OpenAI, Azure OpenAI, and GitHub Models via the shared client factory.
