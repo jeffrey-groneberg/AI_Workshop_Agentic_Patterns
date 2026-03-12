@@ -6,7 +6,10 @@
 Welcome to the **Agentic AI Design Patterns Workshop** — a hands-on, multi-part workshop that teaches you how to build AI agents and multi-agent systems using **pure Python and the OpenAI SDK**. No AI frameworks required.
 
 <div class="share-cta" markdown="block">
+
 :material-share-variant: **Spread the word** — if you find this workshop useful, share it with your network!
+
+<div class="share-cta__buttons">
 <a class="share-cta__btn share-cta__btn--linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns" target="_blank" rel="noopener" title="Share on LinkedIn">
 :fontawesome-brands-linkedin: LinkedIn
 </a>
@@ -25,6 +28,7 @@ Welcome to the **Agentic AI Design Patterns Workshop** — a hands-on, multi-par
 <a class="share-cta__btn share-cta__btn--github" href="https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns" target="_blank" rel="noopener" title="Star on GitHub">
 :fontawesome-brands-github: Star on GitHub
 </a>
+</div>
 </div>
 
 ## What You'll Learn
