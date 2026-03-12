@@ -1,6 +1,6 @@
 # Agentic AI Design Patterns Workshop
 
-Welcome to the **Agentic AI Design Patterns Workshop** — a hands-on, multi-day workshop that teaches you how to build AI agents and multi-agent systems using **pure Python and the OpenAI SDK**. No AI frameworks required.
+Welcome to the **Agentic AI Design Patterns Workshop** — a hands-on, multi-part workshop that teaches you how to build AI agents and multi-agent systems using **pure Python and the OpenAI SDK**. No AI frameworks required.
 
 ## What You'll Learn
 
@@ -28,11 +28,11 @@ graph LR
 
 ## Workshop Structure
 
-| Day | Topics | Exercises |
-|-----|--------|-----------|
-| **Day 1** | LLM fundamentals, tool use, single agents | `00_setup` → `03_single_agent` |
-| **Day 2** | Sequential, concurrent, group chat patterns | `04_sequential` → `06_group_chat` |
-| **Day 3** | Handoff, magentic, implementation topics | `07_handoff` → `08_magentic` |
+| Part | Topics | Exercises |
+|------|--------|-----------|
+| **Part 1** | LLM fundamentals, tool use, single agents | `00_setup` → `03_single_agent` |
+| **Part 2** | Sequential, concurrent, group chat patterns | `04_sequential` → `06_group_chat` |
+| **Part 3** | Handoff, magentic, implementation topics | `07_handoff` → `08_magentic` |
 
 ## Philosophy
 

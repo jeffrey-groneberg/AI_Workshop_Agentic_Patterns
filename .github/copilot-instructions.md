@@ -4,7 +4,7 @@ applyTo: "**"
 
 # Workshop Conventions
 
-This is a multi-day workshop teaching agentic AI design patterns using pure Python and the OpenAI SDK.
+This is a multi-part workshop teaching agentic AI design patterns using pure Python and the OpenAI SDK.
 
 ## Core Principles
 

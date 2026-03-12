@@ -1,6 +1,6 @@
 # Agentic AI Design Patterns Workshop
 
-A hands-on, multi-day workshop teaching **agentic AI design patterns** using pure Python and the OpenAI SDK — no AI frameworks required.
+A hands-on, multi-part workshop teaching **agentic AI design patterns** using pure Python and the OpenAI SDK — no AI frameworks required.
 
 ## What You'll Learn
 
