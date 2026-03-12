@@ -28,8 +28,7 @@ theme:
     - content.tabs.link
 
 copyright: >
-  &copy; 2026 — Created by individual contributors for SAP DKOM 2026.
-  This workshop is not an official Microsoft product and does not constitute official Microsoft documentation, training materials, intellectual property, or product guidance.
+  This is not an official Microsoft product.
 
 extra_css:
   - css/message-flow.css
