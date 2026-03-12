@@ -1,5 +1,9 @@
-/* Inject QR code into the left sidebar, below the Home nav link */
+/* Inject QR code into the left sidebar, only on the Home page */
 document.addEventListener("DOMContentLoaded", function () {
+  // Only show on the root/index page
+  var path = window.location.pathname;
+  if (!path.match(/\/(index\.html)?$/)) return;
+
   var sidebar = document.querySelector(".md-sidebar--primary .md-sidebar__inner");
   if (!sidebar) return;
 
