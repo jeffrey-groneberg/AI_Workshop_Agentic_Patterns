@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin-left: auto;
   margin-right: 0.4rem;
-  order: -1;
 }
 
 .share-header__btn {
