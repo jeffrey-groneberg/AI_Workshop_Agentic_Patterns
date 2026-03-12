@@ -1,43 +1,32 @@
-.share-bar {
+/* ── Share buttons in header ── */
+.share-header {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
-  margin: 1rem 0 0;
-  padding: 0.75rem 0;
-  border-top: 1px solid var(--md-default-fg-color--lightest);
+  gap: 0.25rem;
+  margin-right: 0.4rem;
+  order: -1;
 }
 
-.share-bar__label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--md-default-fg-color--light);
-  margin-right: 0.25rem;
-}
-
-.share-bar__btn {
+.share-header__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   border-radius: 50%;
   text-decoration: none;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  color: var(--md-primary-bg-color, #fff);
   opacity: 0.7;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.share-bar__btn:hover {
-  transform: scale(1.15);
+.share-header__btn:hover {
+  transform: scale(1.2);
   opacity: 1;
 }
 
-.share-bar__btn svg {
-  width: 1.1rem;
-  height: 1.1rem;
+.share-header__btn svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
-
-.share-bar__btn--linkedin { color: #0A66C2; }
-.share-bar__btn--x { color: var(--md-default-fg-color); }
-.share-bar__btn--substack { color: #FF6719; }
