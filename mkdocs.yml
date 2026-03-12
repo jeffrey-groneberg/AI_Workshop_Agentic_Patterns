@@ -5,30 +5,25 @@ site_url: ""
 theme:
   name: material
   palette:
-    scheme: slate
-    primary: black
-    accent: cyan
-  icon:
-    logo: material/robot-outline
-  font:
-    text: Inter
-    code: JetBrains Mono
+    - scheme: default
+      primary: black
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
-    - navigation.instant
-    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.code.copy
-    - content.code.annotate
     - content.tabs.link
-    - header.autohide
-
-extra_css:
-  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
