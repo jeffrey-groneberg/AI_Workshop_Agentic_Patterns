@@ -46,6 +46,9 @@ for round_num in range(1, MAX_ROUNDS + 1):
 
 This creates **predictable, democratic** conversations where every perspective is heard equally. The trade-off is rigidity — agents cannot interrupt, respond out of order, or dynamically decide who speaks next. For more flexible conversations, you would need a manager-driven or priority-based speaking strategy.
 
+!!! question "What happens after the rounds finish?"
+    In this exercise, **nothing** — the loop simply ends after `MAX_ROUNDS` and the raw conversation is the result. There is no final LLM call to extract consensus or synthesize a summary. In production systems you would typically add a **synthesis step**: one final API call with a prompt like *"Summarize the key decisions and action items from this brainstorm"* to distill the multi-agent discussion into actionable output. We omit this here to keep the focus on the round-robin orchestration pattern itself.
+
 ```mermaid
 flowchart TB
     subgraph SharedThread["Shared Messages List"]
@@ -372,6 +375,13 @@ python exercises/06_group_chat/02_maker_checker.py
 ## Expected Output
 
 Turn-by-turn logging showing which agent speaks, the shared conversation growing, and (for maker-checker) the iterative refinement loop.
+
+## References
+
+- **Andrew Ng — Agentic Design Patterns (2024):** Ng identifies *Multi-Agent Collaboration* and *Reflection* as two of four foundational agentic AI patterns. The brainstorm exercise implements multi-agent collaboration; maker-checker implements reflection (an agent critiques and iterates on another's output). See [Agentic Design Patterns Part 2: Reflection](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-2-reflection/) and the full [Agentic AI course by DeepLearning.AI](https://www.deeplearning.ai/courses/).
+- **Microsoft Agent Framework SDK — `RoundRobinGroupChat`:** The production-grade implementation of this pattern. Agents take turns via `select_speaker()` cycling through `participant_names` with modular termination conditions. See [Agent Framework documentation](https://learn.microsoft.com/en-us/agent-framework/) and the [`RoundRobinGroupChat` source](https://github.com/microsoft/autogen/blob/main/python/packages/autogen-agentchat/src/autogen_agentchat/teams/_group_chat/_round_robin_group_chat.py).
+- **Microsoft Agent Framework — Group Chat Orchestration:** Describes round-robin, selector-based, and swarm group chat strategies with shared message threads and configurable termination. See [Group Chat Orchestration on Microsoft Learn](https://learn.microsoft.com/en-us/agent-framework/workflows/orchestrations/group-chat).
+- **LangGraph — Multi-Agent Group Chat:** Graph-based orchestration where agents are nodes and edges define speaking order. Round-robin is modeled as a cyclic graph. See [LangGraph documentation](https://www.langchain.com/langgraph).
 
 ## Next
 
