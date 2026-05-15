@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var repoUrl = "https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns";
+  var repoUrl = "https://github.com/jeffrey-groneberg/AI_Workshop_Agentic_Patterns";
   var title = "Agentic AI Design Patterns Workshop";
   var text = "Check out this hands-on workshop on Agentic AI Design Patterns — pure Python, no frameworks!";
 

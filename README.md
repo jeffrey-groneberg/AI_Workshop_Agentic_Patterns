@@ -52,7 +52,7 @@ python exercises/00_setup/01_test_connection.py
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/jeffreygroneberg/AI_Workshop_Agentic_Patterns.git
+git clone https://github.com/jeffrey-groneberg/AI_Workshop_Agentic_Patterns.git
 cd AI_Workshop_Agentic_Patterns
 
 # 2. Create a virtual environment
@@ -137,9 +137,9 @@ Chapter-by-chapter slide decks to guide participants through the workshop:
 
 If you find this workshop useful, share it with your network!
 
-[![Share on LinkedIn](https://img.shields.io/badge/LinkedIn-Share-0A66C2?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns)
-[![Share on X](https://img.shields.io/badge/X-Share-000?logo=x)](https://x.com/intent/tweet?text=Check%20out%20this%20hands-on%20workshop%20on%20Agentic%20AI%20Design%20Patterns%20%E2%80%94%20pure%20Python%2C%20no%20frameworks!&url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns)
-[![Share on Reddit](https://img.shields.io/badge/Reddit-Share-FF4500?logo=reddit)](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fjeffreygroneberg%2FAI_Workshop_Agentic_Patterns&title=Agentic%20AI%20Design%20Patterns%20Workshop)
+[![Share on LinkedIn](https://img.shields.io/badge/LinkedIn-Share-0A66C2?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2Fjeffrey-groneberg%2FAI_Workshop_Agentic_Patterns)
+[![Share on X](https://img.shields.io/badge/X-Share-000?logo=x)](https://x.com/intent/tweet?text=Check%20out%20this%20hands-on%20workshop%20on%20Agentic%20AI%20Design%20Patterns%20%E2%80%94%20pure%20Python%2C%20no%20frameworks!&url=https%3A%2F%2Fgithub.com%2Fjeffrey-groneberg%2FAI_Workshop_Agentic_Patterns)
+[![Share on Reddit](https://img.shields.io/badge/Reddit-Share-FF4500?logo=reddit)](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fjeffrey-groneberg%2FAI_Workshop_Agentic_Patterns&title=Agentic%20AI%20Design%20Patterns%20Workshop)
 
 ## References
 
